@@ -1,2 +1,0 @@
-TRIM	Trimestrul de raportare	dec/DataSet/Header/TRIM
- 
