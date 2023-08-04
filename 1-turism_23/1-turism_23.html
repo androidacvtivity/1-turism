@@ -1,101 +1,62 @@
-<table border="1" cellspacing="0" cellpadding="0" width="85%">
-    <tr>
-        <td width="400" valign="top">
-            <p><strong>Date de identificare/ </strong></p>
-            <p>Denumirea: @ENT_NAME; </p>
-            <p>&nbsp;</p>
-            <p>Adresa<em>:</em></p>
-            <p>Raionul (municipiul, UTA Găgăuzia)</p>
-            <p>&nbsp;</p>
-            <p>Satul (comuna), oraşul @CUATM;</p>
-            <p>&nbsp;</p>
-            <p>Strada @STREET; </p>
-            <p>&nbsp;</p>
-            <p>Cod CUIÎO: @CUIIO;</p>
-            <p>&nbsp;</p>
-            <p>Cod IDNO: @IDNO; </p>
-            <br>
-            <div class="webform-padding-sm webform-select2-inline">
-                <span class="webform-bold webform-right-sm">["Forma de proprietate"]:</span>@CFP;
-            </div>
-            <br>
-            <div class="webform-padding-sm webform-select2-inline">
-                <span class="webform-bold webform-right-sm">["Forma organizatorico-juridică"]:</span>@CFOJ;
-            </div>
-            <br>
-            <div class="webform-padding-sm webform-select2-inline">
-                <span class="webform-bold webform-right-sm">["Activitatea principală:"]:</span>@CAEM;
-            </div>
-
-
-            <p align="left">&nbsp;</p>
-            <p align="left">Conducătorul<em>@HEAD;</em></p>
-            <p align="left">&nbsp;</p>
-            <p align="left">&nbsp;</p>
-            <p>Executantul @EXECUTOR;</p> <br>
-
-            <p>tel. @PHONE;</p> <br>
-            <p>e-mail. @EMAIL;</p> <br>
-        </td>
-        <td width="412" valign="top">
-            <p align="center">&nbsp;</p>
-            <p align="center">BIROUL NAŢIONAL DE STATISTICĂ<br></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <br clear="ALL">
-            <p align="center"><strong>Cercetare statistică</strong><strong> </strong><br>
-                <strong>(trimestrială)</strong><strong> </strong>
-            </p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>1-TUR </strong><strong> </strong></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>Transportul cu mijloacele de transport rutier</strong></p>
-            <p><strong>&nbsp;</strong></p>
-            <p align="center"><strong>["în ianuarie"] - @nalogPeriodType;@nalogPeriodLetter;T/@TRIM;/@YEAR;
-                    <br /> (["cumulativ de la începutul anului"])</strong></p>
-            <p><strong>&nbsp;</strong></p>
-        </td>
-        <td width="427" valign="top">
-            <p>În conformitate cu Legea Republicii Moldova nr. 93 din 26.05.2017 «Cu privire la statistica oficială»,
-                producătorii de statistici oficiale:<br>
-                - au dreptul să obțină și să colecteze datele necesare producerii de informație statistică de la toate
-                persoanele fizice și juridice (art.13);<br>
-                - asigură protecţia datelor confidenţiale şi neadmiterea divulgării acestora (art.19).<br>
-                Neprezentarea la timp a datelor statistice, prezentarea de date eronate sau în volum incomplet
-                constituie contravenţie şi se sancţionează conform art.330 al Codului contravențional al Republicii
-                Moldova. </p>
-            <br>
-            <p>Aprobat prin Ordinul Biroului Naţional de Statistică <br>
-                nr. 46 din 17 noiembrie 2021 </p>
-            <br>
-            <p>Acest chestionar poate fi completat on-line sau prezentat pe suport de hîrtie în adresa organului
-                teritorial pentru statistică , trimestrial
-                <strong>pînă la data de 25 a lunii următoare perioadei de raport</strong> de către:
-                • persoanele juridice şi fizice, cu genul principal de activitate transporturi rutiere de mărfuri şi
-                transporturi terestre de călători contra plată;
-                • persoanele juridice şi fizice, cu alte genuri de activitate, care efectuează transporturi rutiere de
-                mărfuri contra plată şi au înscrise în inventar sau închi- riază 10 şi mai multe autovehicule de marfă;
-                • persoanele juridice şi fizice, care efectuează transporturi terestre de călători contra plată pe
-                traseele de autobuze de folosinţă generală.
-            </p>
-
-            <p align="center"><strong>&nbsp;</strong></p>
-            <p align="center"><strong>&nbsp;</strong></p>
-        </td>
-    </tr>
-</table>
-
-<br>
+<h3 align="center">["1-TUR"]</h3>
+<h3 align="center">["Raport statistic trimestrial"]</h3>
+<h3 align="center">["Activitatea turistică a agenţiilor de turism şi turoperatorilor"]</h3>
+<p align="center">
+    ["în ianuarie"] - @nalogPeriodType;@nalogPeriodLetter;T/@nalogPeriodQuarter;/@nalogPeriodYear;
+    <br /> (["cumulativ de la începutul anului"])
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Date de identificare"] </span>
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Denumirea"]:</span> @dec_fiscCod_name;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Adresa"]:</span>
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Raionul(municipiul)"]:</span>@dec_fiscCod_fisc;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Sat(comuna/sector)"]:</span>@dec_fiscCod_cuatm;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Strada"]:</span>@dec_group2_adres;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Cod CUIÎO"]:</span> @CUIIO;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Cod IDNO"]:</span>@IDNO;
+</p>
+<div class="webform-padding-sm webform-select2-inline">
+    <span class="webform-bold webform-right-sm">["Forma de proprietate"]:</span>@dec_fiscCod_cfp;
+</div>
+<div class="webform-padding-sm webform-select2-inline">
+    <span class="webform-bold webform-right-sm">["Forma organizatorico-juridică"]:</span>@dec_fiscCod_cfoj;
+</div>
+<div class="webform-padding-sm webform-select2-inline">
+    <span class="webform-bold webform-right-sm">["Activitatea principală"]:</span>@dec_fiscCod_caem;
+</div>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Codul fiscal"]:</span>@dec_fiscCod_codFiscal;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Conducătorul"]:</span>@dec_director_director;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Executantul"]:</span> @dec_table_row_anexeint;
+</p>
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Telefon"]:</span>@dec_fiscCod_telefon;
+</p>
+</br>
 <h3 align="center">
     <strong> ["Cap.1. Principalii indicatori ai activităţii turistice"]</strong>
 </h3>
-<br>
-
+</br>
 <div align="center">
-    <table id="CAP1" border="0" cellspacing="0" cellpadding="0" width="718">
+    <table id="table1" border="0" cellspacing="0" cellpadding="0" width="718">
         <thead>
             <tr>
                 <td width="236" rowspan="3">
@@ -208,19 +169,19 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R01_C1;
+                    @dec_table1_row_r01c1;
                 </td>
                 <td width="85">
-                    @CAP1_R01_C2;
+                    @dec_table1_row_r01c2;
                 </td>
                 <td width="95">
-                    @CAP1_R01_C3;
+                    @dec_table1_row_r01c3;
                 </td>
                 <td width="85">
-                    @CAP1_R01_C4;
+                    @dec_table1_row_r01c4;
                 </td>
                 <td width="94">
-                    @CAP1_R01_C5;
+                    @dec_table1_row_r01c5;
                 </td>
             </tr>
             <tr>
@@ -238,19 +199,19 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R02_C1;
+                    @dec_table1_row_r02c1;
                 </td>
                 <td width="85">
-                    @CAP1_R02_C2;
+                    @dec_table1_row_r02c2;
                 </td>
                 <td width="95">
-                    @CAP1_R02_C3;
+                    @dec_table1_row_r02c3;
                 </td>
                 <td width="85">
-                    @CAP1_R02_C4;
+                    @dec_table1_row_r02c4;
                 </td>
                 <td width="94">
-                    @CAP1_R02_C5;
+                    @dec_table1_row_r02c5;
                 </td>
                 </td>
             </tr>
@@ -269,19 +230,19 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R03_C1;
+                    @dec_table1_row_r03c1;
                 </td>
                 <td width="85">
-                    @CAP1_R03_C2;
+                    @dec_table1_row_r03c2;
                 </td>
                 <td width="95">
-                    @CAP1_R03_C3;
+                    @dec_table1_row_r03c3;
                 </td>
                 <td width="85">
-                    @CAP1_R03_C4;
+                    @dec_table1_row_r03c4;
                 </td>
                 <td width="94">
-                    @CAP1_R03_C5;
+                    @dec_table1_row_r03c5;
                 </td>
             </tr>
             <tr>
@@ -296,16 +257,16 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R04_C1;
+                    @dec_table1_row_r04c1;
                 </td>
                 <td width="85">
-                    @CAP1_R04_C2;
+                    @dec_table1_row_r04c2;
                 </td>
                 <td width="95">
-                    @CAP1_R04_C3;
+                    @dec_table1_row_r04c3;
                 </td>
                 <td width="85">
-                    @CAP1_R04_C4;
+                    @dec_table1_row_r04c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -328,16 +289,16 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R31_C1;
+                    @dec_table1_row_r31c1;
                 </td>
                 <td width="85">
-                    @CAP1_R31_C2;
+                    @dec_table1_row_r31c2;
                 </td>
                 <td width="95">
-                    @CAP1_R31_C3;
+                    @dec_table1_row_r31c3;
                 </td>
                 <td width="85">
-                    @CAP1_R31_C4;
+                    @dec_table1_row_r31c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -357,16 +318,16 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R05_C1;
+                    @dec_table1_row_r05c1;
                 </td>
                 <td width="85">
-                    @CAP1_R05_C2;
+                    @dec_table1_row_r05c2;
                 </td>
                 <td width="95">
-                    @CAP1_R05_C3;
+                    @dec_table1_row_r05c3;
                 </td>
                 <td width="85">
-                    @CAP1_R05_C4;
+                    @dec_table1_row_r05c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -386,10 +347,10 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R32_C1;
+                    @dec_table1_row_r32c1;
                 </td>
                 <td width="85">
-                    @CAP1_R32_C2;
+                    @dec_table1_row_r32c2;
                 </td>
                 <td width="95">
                     <p align="center">
@@ -397,7 +358,7 @@
                     </p>
                 </td>
                 <td width="85">
-                    @CAP1_R32_C4;
+                    @dec_table1_row_r32c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -417,10 +378,10 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R33_C1;
+                    @dec_table1_row_r33c1;
                 </td>
                 <td width="85">
-                    @CAP1_R33_C2;
+                    @dec_table1_row_r33c2;
                 </td>
                 <td width="95">
                     <p align="center">
@@ -428,7 +389,7 @@
                     </p>
                 </td>
                 <td width="85">
-                    @CAP1_R33_C4;
+                    @dec_table1_row_r33c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -448,10 +409,10 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R34_C1;
+                    @dec_table1_row_r34c1;
                 </td>
                 <td width="85">
-                    @CAP1_R34_C2;
+                    @dec_table1_row_r34c2;
                 </td>
                 <td width="95">
                     <p align="center">
@@ -459,7 +420,7 @@
                     </p>
                 </td>
                 <td width="85">
-                    @CAP1_R34_C4;
+                    @dec_table1_row_r34c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -482,19 +443,19 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R09_C1;
+                    @dec_table1_row_r09c1;
                 </td>
                 <td width="85">
-                    @CAP1_R09_C2;
+                    @dec_table1_row_r09c2;
                 </td>
                 <td width="95">
-                    @CAP1_R09_C3;
+                    @dec_table1_row_r09c3;
                 </td>
                 <td width="85">
-                    @CAP1_R09_C4;
+                    @dec_table1_row_r09c4;
                 </td>
                 <td width="94">
-                    @CAP1_R09_C5;
+                    @dec_table1_row_r09c5;
                 </td>
             </tr>
             <tr>
@@ -509,16 +470,16 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R10_C1;
+                    @dec_table1_row_r10c1;
                 </td>
                 <td width="85">
-                    @CAP1_R10_C2;
+                    @dec_table1_row_r10c2;
                 </td>
                 <td width="95">
-                    @CAP1_R10_C3;
+                    @dec_table1_row_r10c3;
                 </td>
                 <td width="85">
-                    @CAP1_R10_C4;
+                    @dec_table1_row_r10c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -541,16 +502,16 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R91_C1;
+                    @dec_table1_row_r91c1;
                 </td>
                 <td width="85">
-                    @CAP1_R92_C2;
+                    @dec_table1_row_r91c2;
                 </td>
                 <td width="95">
-                    @CAP1_R93_C3;
+                    @dec_table1_row_r91c3;
                 </td>
                 <td width="85">
-                    @CAP1_R93_C4;
+                    @dec_table1_row_r91c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -570,10 +531,10 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R92_C1;
+                    @dec_table1_row_r92c1;
                 </td>
                 <td width="85">
-                    @CAP1_R92_C2;
+                    @dec_table1_row_r92c2;
                 </td>
                 <td width="95">
                     <p align="center">
@@ -581,7 +542,7 @@
                     </p>
                 </td>
                 <td width="85">
-                    @CAP1_R92_C4;
+                    @dec_table1_row_r92c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -601,10 +562,10 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R93_C1;
+                    @dec_table1_row_r93c1;
                 </td>
                 <td width="85">
-                    @CAP1_R93_C2;
+                    @dec_table1_row_r93c2;
                 </td>
                 <td width="95">
                     <p align="center">
@@ -612,7 +573,7 @@
                     </p>
                 </td>
                 <td width="85">
-                    @CAP1_R93_C4;
+                    @dec_table1_row_r93c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -632,10 +593,10 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R94_C1;
+                    @dec_table1_row_r94c1;
                 </td>
                 <td width="85">
-                    @CAP1_R94_C2;
+                    @dec_table1_row_r94c2;
                 </td>
                 <td width="95">
                     <p align="center">
@@ -643,7 +604,7 @@
                     </p>
                 </td>
                 <td width="85">
-                    @CAP1_R94_C3;
+                    @dec_table1_row_r94c4;
                 </td>
                 <td width="94">
                     <p align="center">
@@ -666,50 +627,147 @@
                     </p>
                 </td>
                 <td width="76">
-                    @CAP1_R11_C1;
+                    @dec_table1_row_r11c1;
                 </td>
                 <td width="85">
-                    @CAP1_R11_C2;
+                    @dec_table1_row_r11c2;
                 </td>
                 <td width="95">
-                    @CAP1_R11_C3;
+                    @dec_table1_row_r11c3;
                 </td>
                 <td width="85">
-                    @CAP1_R11_C4;
+                    @dec_table1_row_r11c4;
                 </td>
                 <td width="94">
-                    @CAP1_R11_C5;
+                    @dec_table1_row_r11c5;
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
-
+<table>
+    <tr>
+        <td>
+            ["Numărul persoanelor ocupate cu activitatea turistică la sfîrşitul trimestrului"] (16)
+        </td>
+        <td rowspan="2">
+            @dec_table1_row_r16c1;
+        </td>
+        <td align="center">
+            ["persoane"]
+        </td>
+    </tr>
+</table>
+<h3 align="center">
+    <strong>["Cap.2. Date cu privire la numărul de turişti deserviţi*, pe ţări"]</strong>
+</h3>
+</br>
 <div align="center">
-    <table id="CAP1">
-        <tr>
-            <td>
-                ["Numărul persoanelor ocupate cu activitatea turistică la sfîrşitul trimestrului"] (16)
-            </td>
-            <td rowspan="2">
-                @CAP1_R16_C1;
-            </td>
-            <td align="center">
-                ["persoane"]
-            </td>
-        </tr>
-    </table>
-</div>
 
-<div align="center">
+    <div id="dinamicTable">
+        <a href="#" class="grid-addrow">["Adaugă rînd"]</a>
+        <table id="tabcon" class="grid">
+            <thead>
+                <tr>
+                    <td colspan="2" width="259">
+                        <p align="center">
+                            <strong>["Ţara"]</strong>
+                        </p>
+                    </td>
+                    <td width="57">
+                        <p align="center">
+                            ["Codul ţării"]
+                        </p>
+                    </td>
+                    <td width="193">
+                        <p align="center">
+                            ["Numărul turiştilor* străini sosiţi în Republica Moldova"]
+                        </p>
+                    </td>
+                    <td width="180">
+                        <p align="center">
+                            ["Numărul turiştilor* plecaţi"]
+                        </p>
+                        <p align="center">
+                            ["din Republica Moldova în străinătate"]
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="259" valign="bottom">
+                        <p align="center">
+                            <strong>А</strong>
+                        </p>
+                    </td>
+                    <td width="57" valign="bottom">
+                        <p align="center">
+                            <strong>B</strong>
+                        </p>
+                    </td>
+                    <td width="193">
+                        <p align="center">
+                            <strong>1</strong>
+                        </p>
+                    </td>
+                    <td width="180">
+                        <p align="center">
+                            <strong>2</strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="259">
+                        <p>
+                            <strong>["Total"]</strong>
+                        </p>
+                    </td>
+                    <td width="57">
+                        <p align="center">
+                            X
+                        </p>
+                    </td>
+                    <td width="193">
+                        @dec_tabcon_row_c1_tot;
+                    </td>
+                    <td width="180">
+                        @dec_tabcon_row_c2_tot;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" width="259">
+                        <p>
+                            ["din care pe ţări"]:
+                        </p>
+                    </td>
+                    <td width="57">
+                    </td>
+                    <td width="193">
 
-    <h3 align="center">
-        <strong>["Cap.2. Date cu privire la numărul de turişti deserviţi*, pe ţări"]</strong>
-    </h3>
+                    </td>
+                    <td width="180">
 
-
-    <div align="center">
-
-
-
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="drow" align="center">
+                    <td width="20">
+                        @dec_dinamicTable_row_number;
+                    </td>
+                    <td width="259">
+                        @dec_dinamicTable_row_namecountry;
+                    </td>
+                    <td width="57">
+                        @dec_dinamicTable_row_countrycode;
+                    </td>
+                    <td width="193">
+                        @dec_dinamicTable_row_c1;
+                    </td>
+                    <td width="180">
+                        @dec_dinamicTable_row_c2;
+                    </td>
+                    <td width="20" class="delrow"><a href="#">["Şterge"]</a></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
