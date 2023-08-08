@@ -81,3 +81,21 @@
 	dec_dinamicTable_row_c2_tot	Anexa nr.1 col.5 Total	money	textfield	Activat
 	dec_tabcon_row_c1_tot	Anexa nr.1 col.4 Total	money	textfield	Activat
 	dec_tabcon_row_c2_tot	Anexa nr.1 col.5 Total	money	textfield	Activat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bancuvitalie
+
+Roma2023!@#$%
