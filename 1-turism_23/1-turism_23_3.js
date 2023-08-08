@@ -422,7 +422,9 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         });
     }
 
-    if (!values.STREET) {
+// 
+
+    if (values.STREET === '') {
         webform.warnings.push({
             "fieldName": "STREET",
             "msg": Drupal.t('Câmpul nu este completat')
