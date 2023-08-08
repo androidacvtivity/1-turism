@@ -38,6 +38,33 @@ function changeSelectCountry(elem) {
 webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
+
+    // Checking  telefon 
+    if (!values.PHONE || !/^[0-9]{9}$/.test(values.PHONE)) {
+        webform.errors.push({
+            'fieldName': 'PHONE',
+            'msg': Drupal.t(' Cod eroare: A.09 Introduceți doar un număr de telefon format din 9 cifre')
+        });
+    }
+
+    // Check if the first digit is 0
+    if (values.PHONE && values.PHONE[0] !== '0') {
+        webform.errors.push({
+            'fieldName': 'PHONE',
+            'msg': Drupal.t(' Cod eroare: A.09 Prima cifră a numărului de telefon trebuie să fie 0')
+        });
+    }
+   //End  Checking  telefon
+   
+    if (!values.STREET) {
+        webform.errors.push({
+            'fieldName': 'STREET',
+            'msg': Drupal.t('Câmpul nu este completat')
+        });
+    }
+  
+
+
     var arr1_columns = [1, 2, 4];
     var arr1_inputs = ['01', '02', '03', '04', '31', '05', '32', '33', '34', '09', '10', '91', '92', '93', '94', '11'];
 
@@ -422,12 +449,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         });
     }
 
-    if (!values.STREET) {
-        webform.warnings.push({
-            "fieldName": "STREET",
-            "msg": Drupal.t('Câmpul nu este completat')
-        });
-    }
+
 
     //Sort warnings & errors
     webform.warnings.sort(function (a, b) {

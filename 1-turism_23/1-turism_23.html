@@ -2,26 +2,26 @@
 <h3 align="center">["Raport statistic trimestrial"]</h3>
 <h3 align="center">["Activitatea turistică a agenţiilor de turism şi turoperatorilor"]</h3>
 <p align="center">
-    ["în ianuarie"] - @nalogPeriodType;@nalogPeriodLetter;T/@nalogPeriodQuarter;/@nalogPeriodYear;
+    ["în ianuarie"] - @DATE_FISC;@nalogPeriodLetter;T/@TRIM;/@YEAR;
     <br /> (["cumulativ de la începutul anului"])
 </p>
 <p class="webform-padding-sm">
     <span class="webform-bold webform-right-sm">["Date de identificare"] </span>
 </p>
 <p class="webform-padding-sm">
-    <span class="webform-bold webform-right-sm">["Denumirea"]:</span> @dec_fiscCod_name;
+    <span class="webform-bold webform-right-sm">["Denumirea"]:</span> @ENT_NAME;
 </p>
 <p class="webform-padding-sm">
     <span class="webform-bold webform-right-sm">["Adresa"]:</span>
 </p>
-<p class="webform-padding-sm">
+<!-- <p class="webform-padding-sm">
     <span class="webform-bold webform-right-sm">["Raionul(municipiul)"]:</span>@dec_fiscCod_fisc;
+</p> -->
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Sat(comuna/sector)"]:</span>@CUATM;
 </p>
 <p class="webform-padding-sm">
-    <span class="webform-bold webform-right-sm">["Sat(comuna/sector)"]:</span>@dec_fiscCod_cuatm;
-</p>
-<p class="webform-padding-sm">
-    <span class="webform-bold webform-right-sm">["Strada"]:</span>@dec_group2_adres;
+    <span class="webform-bold webform-right-sm">["Strada"]:</span>@STREET;
 </p>
 <p class="webform-padding-sm">
     <span class="webform-bold webform-right-sm">["Cod CUIÎO"]:</span> @CUIIO;
@@ -30,25 +30,29 @@
     <span class="webform-bold webform-right-sm">["Cod IDNO"]:</span>@IDNO;
 </p>
 <div class="webform-padding-sm webform-select2-inline">
-    <span class="webform-bold webform-right-sm">["Forma de proprietate"]:</span>@dec_fiscCod_cfp;
+    <span class="webform-bold webform-right-sm">["Forma de proprietate"]:</span>@CFP;
 </div>
 <div class="webform-padding-sm webform-select2-inline">
-    <span class="webform-bold webform-right-sm">["Forma organizatorico-juridică"]:</span>@dec_fiscCod_cfoj;
+    <span class="webform-bold webform-right-sm">["Forma organizatorico-juridică"]:</span>@CFOJ;
 </div>
 <div class="webform-padding-sm webform-select2-inline">
-    <span class="webform-bold webform-right-sm">["Activitatea principală"]:</span>@dec_fiscCod_caem;
+    <span class="webform-bold webform-right-sm">["Activitatea principală"]:</span>@CAEM;
 </div>
-<p class="webform-padding-sm">
+<!-- <p class="webform-padding-sm">
     <span class="webform-bold webform-right-sm">["Codul fiscal"]:</span>@dec_fiscCod_codFiscal;
+</p> -->
+<p class="webform-padding-sm">
+    <span class="webform-bold webform-right-sm">["Conducătorul"]:</span>@HEAD;
 </p>
 <p class="webform-padding-sm">
-    <span class="webform-bold webform-right-sm">["Conducătorul"]:</span>@dec_director_director;
+    <span class="webform-bold webform-right-sm">["Executantul"]:</span> @EXECUTOR;
 </p>
 <p class="webform-padding-sm">
-    <span class="webform-bold webform-right-sm">["Executantul"]:</span> @dec_table_row_anexeint;
+    <span class="webform-bold webform-right-sm">["Telefon"]:</span>@PHONE;
 </p>
+
 <p class="webform-padding-sm">
-    <span class="webform-bold webform-right-sm">["Telefon"]:</span>@dec_fiscCod_telefon;
+    <span class="webform-bold webform-right-sm">["e-mail"]:</span>@EMAIL;
 </p>
 </br>
 <h3 align="center">
@@ -106,6 +110,10 @@
                     </p>
                 </td>
             </tr>
+
+    
+
+
             <tr>
                 <td width="85">
                     <p align="center">
