@@ -1,2 +1,28 @@
+//This is js code in Drupal
+//TRIM = '1'
+//YEAR = '2020'
 
-108,109
+but get_trimestrial
+and get_current_year 
+
+function get_trimestrial() {
+        var date = new Date();
+        return Math.ceil((date.getMonth() + 1) / 3);
+    }
+
+    function get_current_year() {
+        var date = new Date();
+        return date.getFullYear();
+    }
+
+    var trimestrial = Drupal.settings.mywebform.values.TRIM;  
+    var year = Drupal.settings.mywebform.values.YEAR;
+    if (parseFloat(trimestrial) == get_trimestrial() && year == get_current_year()) {
+        webform.errors.push({
+            'fieldName': 'TRIM',
+            'msg': Drupal.t('Wrong fiscal period!')
+        });
+    }
+
+
+    // Not work. 
