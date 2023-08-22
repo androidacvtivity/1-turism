@@ -98,18 +98,38 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     var col3_rd31 = 0;
     var col4_rd31 = 0;
 
+    // var rd16 = 0;
+    // if (!isNaN(parseInt(values['CAP1_R16_C1']))) {
+    //     rd16 = parseInt(values['CAP1_R16_C1']);
+    // }
+
+    // if (rd16 <= 0) {
+    //     webform.errors.push({
+    //         'fieldName': 'CAP1_R16_C1',
+    //         'weight': 19,
+    //         'msg': Drupal.t('Error code: 06-019 (Sect.1) Sect.I row.16 > 0')
+    //     });
+    // }
+
+
+
     var rd16 = 0;
-    if (!isNaN(parseInt(values['dec_table1_row_r16c1']))) {
-        rd16 = parseInt(values['dec_table1_row_r16c1']);
+    if (!isNaN(parseInt(values['CAP1_R16_C1']))) {
+        rd16 = parseInt(values['CAP1_R16_C1']);
     }
 
     if (rd16 <= 0) {
+        var errorMsg = Drupal.t('Error code: 06-019 Cap.1 Rindul.16 > 0. - Rindul.16 =   @value', { '@value': rd16 });
+ 
         webform.errors.push({
-            'fieldName': 'dec_table1_row_r16c1',
+            'fieldName': 'CAP1_R16_C1',
             'weight': 19,
-            'msg': Drupal.t('Error code: 06-019 (Sect.1) Sect.I row.16 > 0')
+            'msg': errorMsg
         });
     }
+
+
+
 
     var Col1Rd3 = 0;
     var Col1Rd9 = 0;
