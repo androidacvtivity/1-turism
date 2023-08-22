@@ -1,28 +1,20 @@
-//This is js code in Drupal
-//TRIM = '1'
-//YEAR = '2020'
 
-but get_trimestrial
-and get_current_year 
 
-function get_trimestrial() {
-        var date = new Date();
-        return Math.ceil((date.getMonth() + 1) / 3);
+
+//This is js code in Drupla. 
+//Modify  'msg' - show in here value of CAP1_R16_C1
+
+
+
+    var rd16 = 0;
+    if (!isNaN(parseInt(values['CAP1_R16_C1']))) {
+        rd16 = parseInt(values['CAP1_R16_C1']);
     }
 
-    function get_current_year() {
-        var date = new Date();
-        return date.getFullYear();
-    }
-
-    var trimestrial = Drupal.settings.mywebform.values.TRIM;  
-    var year = Drupal.settings.mywebform.values.YEAR;
-    if (parseFloat(trimestrial) == get_trimestrial() && year == get_current_year()) {
+    if (rd16 <= 0) {
         webform.errors.push({
-            'fieldName': 'TRIM',
-            'msg': Drupal.t('Wrong fiscal period!')
+            'fieldName': 'CAP1_R16_C1',
+            'weight': 19,
+            'msg': Drupal.t('Error code: 06-019 (Sect.1) Sect.I row.16 > 0')
         });
     }
-
-
-    // Not work. 
