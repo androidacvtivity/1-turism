@@ -38,6 +38,9 @@
 [dec_table1_row_r03c3]+[dec_table1_row_r09c3]=[dec_table1_row_r02c3]msg(Error);
 [dec_table1_row_r03c4]+[dec_table1_row_r09c4]=[dec_table1_row_r02c4]msg(Error);
 [dec_table1_row_r03c5]+[dec_table1_row_r09c5]=[dec_table1_row_r02c5]msg(Error);
+
+
+
 sum([&dec_dinamicTable_row_c1])=[dec_tabcon_row_c1_tot]msg(Error);
 sum([&dec_dinamicTable_row_c2])=[dec_tabcon_row_c2_tot]msg(Error);
 

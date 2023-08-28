@@ -412,22 +412,22 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     //     }
     // }
 
-    var fields_table1_cod = jQuery('#tabcon tbody tr td:nth-child(3)').find('input');
-    var fields_table1_c1 = jQuery('#tabcon tbody tr td:nth-child(4)').find('input');
-    var fields_table1_c2 = jQuery('#tabcon tbody tr td:nth-child(5)').find('input');
+    // var fields_table1_cod = jQuery('#tabcon tbody tr td:nth-child(3)').find('input');
+    // var fields_table1_c1 = jQuery('#tabcon tbody tr td:nth-child(4)').find('input');
+    // var fields_table1_c2 = jQuery('#tabcon tbody tr td:nth-child(5)').find('input');
 
-    var CSI_4 = 0;
-    var CSI_10 = 0;
-    var Col1 = 0;
-    var Col2 = 0;
+    // var CSI_4 = 0;
+    // var CSI_10 = 0;
+    // var Col1 = 0;
+    // var Col2 = 0;
 
-    if (!isNaN(parseInt(values['dec_table1_row_r04c1']))) {
-        CSI_4 = parseInt(values['dec_table1_row_r04c1']);
-    }
+    // if (!isNaN(parseInt(values['dec_table1_row_r04c1']))) {
+    //     CSI_4 = parseInt(values['dec_table1_row_r04c1']);
+    // }
 
-    if (!isNaN(parseInt(values['dec_table1_row_r10c1']))) {
-        CSI_10 = parseInt(values['dec_table1_row_r10c1']);
-    }
+    // if (!isNaN(parseInt(values['dec_table1_row_r10c1']))) {
+    //     CSI_10 = parseInt(values['dec_table1_row_r10c1']);
+    // }
 
     // for (var i = 0; i < values.dec_dinamicTable_row_c1.length; i++) {
 
