@@ -210,24 +210,24 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         var col4 = 0;
         var col5 = 0;
 
-        if (!isNaN(parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c1']))) {
-            col1 = parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c1']);
+        if (!isNaN(parseInt(values['CAP1_R' + arr1_inputs[j] + 'c1']))) {
+            col1 = parseInt(values['CAP1_R' + arr1_inputs[j] + 'c1']);
         }
 
-        if (!isNaN(parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c2']))) {
-            col2 = parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c2']);
+        if (!isNaN(parseInt(values['CAP1_R' + arr1_inputs[j] + 'c2']))) {
+            col2 = parseInt(values['CAP1_R' + arr1_inputs[j] + 'c2']);
         }
 
-        if (!isNaN(parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c3']))) {
-            col3 = parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c3']);
+        if (!isNaN(parseInt(values['CAP1_R' + arr1_inputs[j] + 'c3']))) {
+            col3 = parseInt(values['CAP1_R' + arr1_inputs[j] + 'c3']);
         }
 
-        if (!isNaN(parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c4']))) {
-            col4 = parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c4']);
+        if (!isNaN(parseInt(values['CAP1_R' + arr1_inputs[j] + 'c4']))) {
+            col4 = parseInt(values['CAP1_R' + arr1_inputs[j] + 'c4']);
         }
 
-        if (!isNaN(parseInt(values['dec_table1_row_r' + arr1_inputs[j] + 'c5']))) {
-            col5 = parseFloat(values['dec_table1_row_r' + arr1_inputs[j] + 'c5']);
+        if (!isNaN(parseInt(values['CAP1_R' + arr1_inputs[j] + 'c5']))) {
+            col5 = parseFloat(values['CAP1_R' + arr1_inputs[j] + 'c5']);
         }
 
         if (
@@ -240,12 +240,32 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
             if (col1 > 0 && col5 === 0) {
                 webform.errors.push({
-                    'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c5',
+                    'fieldName': 'CAP1_R' + arr1_inputs[j] + 'c5',
                     'weight': 31,
                     'msg': Drupal.t('Cod eroare: 06-031 (Cap.1) rd.' + arr1_inputs[j] + ' col1 > 0 atunci  COL5 > 0')
                 });
             }
         }
+
+
+        if (!isNaN(parseInt(values['CAP1_R01_C1']))) {
+            CAP1_R01_C1 = parseInt(values['CAP1_R01_C1']);
+        }
+
+        if (!isNaN(parseInt(values['CAP1_R01_C5']))) {
+            CAP1_R01_C5 = parseInt(values['CAP1_R01_C5']);
+        }
+
+
+
+        if (CAP1_R01_C1 > 0 && CAP1_R01_C5 === 0) {
+            webform.errors.push({
+                'fieldName': 'CAP1_R01_C5',
+                'weight': 31,
+                'msg': Drupal.t('Cod eroare: 06-031 (Cap.1) rd. CAP1_R01_1 > 0 atunci  COL5 > 0')
+            });
+        }
+
 
         // if ((col1 == col3) && col4 != 0) {
         //     webform.errors.push({
