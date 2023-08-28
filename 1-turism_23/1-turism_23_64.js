@@ -263,13 +263,13 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
 
 
-        // if (col4 < col2) {
-        //     webform.errors.push({
-        //         'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c4',
-        //         'weight': 3,
-        //         'msg': Drupal.t('Cod eroare: 06-003 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col4 >= col2')
-        //     });
-        // }
+        if (col4 < col2) {
+            webform.errors.push({
+                'fieldName': 'CAP1_R' + arr1_inputs[j] + '_C4',
+                'weight': 3,
+                'msg': Drupal.t('Cod eroare: 06-003 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col4 >= col2')
+            });
+        }
 
         // if (col2 != 0) {
         //     if ((col4 / col2) < 1) {

@@ -263,50 +263,56 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
 
 
-        // if (col4 < col2) {
-        //     webform.errors.push({
-        //         'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c4',
-        //         'weight': 3,
-        //         'msg': Drupal.t('Cod eroare: 06-003 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col4 >= col2')
-        //     });
-        // }
-
-        // if (col2 != 0) {
-        //     if ((col4 / col2) < 1) {
-        //         webform.errors.push({
-        //             'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c4',
-        //             'weight': 4,
-        //             'msg': Drupal.t('Cod eroare: 06-004 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col4/col2 >= 1')
-        //         });
-        //     }
-
-            // if ((col4 / col2) > 30) {
-            //     webform.errors.push({
-            //         'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c4',
-            //         'weight': 28,
-            //         'msg': Drupal.t('Cod eroare: 06-028 (Cap.1) rd.' + arr1_inputs[j] + ' atunci Col4/Col2 <= 30')
-            //     });
-            // }
+        if (col4 < col2) {
+            webform.errors.push({
+                'fieldName': 'CAP1_R' + arr1_inputs[j] + '_C4',
+                'weight': 3,
+                'msg': Drupal.t('Cod eroare: 06-003 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col4 >= col2')
+            });
         }
 
-        // if (arr1_inputs[j] == '32' || arr1_inputs[j] == '33' || arr1_inputs[j] == '34' || arr1_inputs[j] == '92' || arr1_inputs[j] == '93' || arr1_inputs[j] == '94') {
+        if (col2 != 0) {
+            if ((col4 / col2) < 1) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + arr1_inputs[j] + '_C4',
+                    'weight': 4,
+                    'msg': Drupal.t('Cod eroare: 06-004 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col4/col2 >= 1')
+                });
+            }
+        }
 
-        //     if (col1 != col2) {
-        //         webform.errors.push({
-        //             'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c2',
-        //             'weight': 2,
-        //             'msg': Drupal.t('Cod eroare: 06-002 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col1 = col2')
-        //         });
-        //     }
-        // } else {
-        //     if (col1 != col2 + col3) {
-        //         webform.errors.push({
-        //             'fieldName': 'dec_table1_row_r' + arr1_inputs[j] + 'c1',
-        //             'weight': 1,
-        //             'msg': Drupal.t('Cod eroare: 06-001 (Cap.1) rd.' + arr1_inputs[j] + ' col1 = col2+col3')
-        //         });
-        //     }
-        // }
+
+        
+
+            if ((col4 / col2) > 30) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + arr1_inputs[j] + '_C4',
+                    'weight': 28,
+                    'msg': Drupal.t('Cod eroare: 06-028 (Cap.1) rd.' + arr1_inputs[j] + ' atunci Col4/Col2 <= 30')
+                });
+            }
+
+
+        }
+
+        if (arr1_inputs[j] == '32' || arr1_inputs[j] == '33' || arr1_inputs[j] == '34' || arr1_inputs[j] == '92' || arr1_inputs[j] == '93' || arr1_inputs[j] == '94') {
+
+            if (col1 != col2) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + arr1_inputs[j] + '_C2',
+                    'weight': 2,
+                    'msg': Drupal.t('Cod eroare: 06-002 (Cap.1) rd.' + arr1_inputs[j] + ' atunci col1 = col2')
+                });
+            }
+        } else {
+            if (col1 != col2 + col3) {
+                webform.errors.push({
+                    'fieldName': 'CAP1_R' + arr1_inputs[j] + '_C1',
+                    'weight': 1,
+                    'msg': Drupal.t('Cod eroare: 06-001 (Cap.1) rd.' + arr1_inputs[j] + ' col1 = col2+col3')
+                });
+            }
+        }
 
         // if (arr1_inputs[j] == '03' || arr1_inputs[j] == '31' || arr1_inputs[j] == '09') {
         //     col1_rd3 = col1;
