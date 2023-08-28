@@ -160,13 +160,20 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         Col2Cap2 = parseInt(values['CAP2_R001_C2']);
     }
 
-    if (Col1Rd3 != Col1Cap2) {
+    if (Col1Rd3 != Col1Cap2) 
+    
+    {
+
+        var errorMsg = Drupal.t('Error code: 06-022 Cap.I rd.03 col1 = Cap.II rd.Total col1 - @CAP1_R03_C1 <> @CAP2_R001_C1', { '@CAP1_R03_C1': CAP1_R03_C1, '@CAP2_R001_C1': CAP2_R001_C1 })
         webform.errors.push({
             'fieldName': 'CAP2_R001_C1',
             'weight': 22,
-            'msg': Drupal.t('Error code: 06-022 Cap.I rd.03 col1 = Cap.II rd.Total col1')
+            'msg': errorMsg
         });
     }
+
+
+    
 
     // if (Col1Rd9 != Col2Cap2) {
     //     webform.errors.push({

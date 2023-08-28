@@ -134,6 +134,9 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
             'weight': 19,
             'msg': errorMsg
         });
+
+
+        
     }
 
 
@@ -160,21 +163,45 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         Col2Cap2 = parseInt(values['CAP2_R001_C2']);
     }
 
-    if (Col1Rd3 != Col1Cap2) {
+    if (Col1Rd3 !== Col1Cap2) 
+    
+    {
+
+        var errorMsg = Drupal.t('Error code: 06-022 Cap.I rd.03 col1 = Cap.II rd.Total col1 - @Col1Rd3 <> @Col1Cap2', { '@Col1Rd3': Col1Rd3, '@Col1Cap2': Col1Cap2 })
         webform.errors.push({
             'fieldName': 'CAP2_R001_C1',
             'weight': 22,
-            'msg': Drupal.t('Error code: 06-022 Cap.I rd.03 col1 = Cap.II rd.Total col1')
+            'msg': errorMsg
+        });
+
+        webform.errors.push({
+            'fieldName': 'CAP1_R03_C1',
+            'weight': 22,
+            'msg': errorMsg
         });
     }
 
-    // if (Col1Rd9 != Col2Cap2) {
-    //     webform.errors.push({
-    //         'fieldName': 'dec_tabcon_row_c2_tot',
-    //         'weight': 23,
-    //         'msg': Drupal.t('Error code: 06-023 (Sect.1) Sect.I row.09 col1 = Sect.II row.001 col2')
-    //     });
-    // }
+
+
+
+
+    if (Col1Rd9 !== Col2Cap2) {
+
+        var errorMsg = Drupal.t('Error code: 06-023 Cap.I rd.09 col1 = Cap.II rd.Total col2 - @Col1Rd9 <> @Col2Cap2', { '@Col1Rd9': Col1Rd9, '@Col2Cap2': Col2Cap2 })
+        webform.errors.push({
+            'fieldName': 'CAP2_R001_C2',
+            'weight': 22,
+            'msg': errorMsg
+        });
+
+        webform.errors.push({
+            'fieldName': 'CAP1_R09_C1',
+            'weight': 22,
+            'msg': errorMsg
+        });
+    }
+
+
 
     // for (var j = 0; j < arr1_inputs.length; j++) {
     //     var col1 = 0;
