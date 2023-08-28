@@ -40,3 +40,7 @@
 [dec_table1_row_r03c5]+[dec_table1_row_r09c5]=[dec_table1_row_r02c5]msg(Error);
 sum([&dec_dinamicTable_row_c1])=[dec_tabcon_row_c1_tot]msg(Error);
 sum([&dec_dinamicTable_row_c2])=[dec_tabcon_row_c2_tot]msg(Error);
+
+
+sum([&CAP2_R_C1])=[CAP2_R001_C1]msg(Suma Total col.1  Cap.2. Date cu privire la numărul de turişti deserviţi*, pe ţări este incorectă);
+sum([&CAP2_R_C2])=[CAP2_R001_C2]msg(Suma Total col.2  Cap.2. Date cu privire la numărul de turişti deserviţi*, pe ţări este incorectă);
