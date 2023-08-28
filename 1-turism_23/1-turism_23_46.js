@@ -17,23 +17,46 @@
 })(jQuery);
 
 function changeIdCountry(elem) {
-    var elemnt = jQuery(elem).closest('tr').find('input.dec_dinamicTable_row_countrycode');
+    var elemnt = jQuery(elem).closest('tr').find('input.input-country');
     if (jQuery(elem).val() == elemnt.val())
         return;
 
     elemnt.val(jQuery(elem).val()).change();
 }
 
-function changeSelectCountry(elem) {
-    var getValue = jQuery(elem).val();
 
-    if (jQuery(elem).closest('tr').find('select.dec_dinamicTable_row_namecountry option[value=' + getValue + ']').length > 0) {
-        jQuery(elem).closest('tr').find('select.dec_dinamicTable_row_namecountry').val(getValue).change();
-        return true;
+
+
+
+
+function changeSelectCountry(elem) {
+    var originalValue = jQuery(elem).val().trim();
+    var trimmedValue = originalValue.replace(/\s/g, ''); // Remove all blank spaces
+
+    if (trimmedValue === "") {
+        alert('Codul țării este gol');
+        return false;
     }
-    mywebform_alert('Nu exista tara cu acest cod');
-    return false;
+
+    var optionExists = jQuery(elem).closest('tr').find('select.select-country option[value="' + trimmedValue + '"]').length > 0;
+
+    if (optionExists) {
+        jQuery(elem).closest('tr').find('select.select-country').val(trimmedValue).change();
+        return true;
+    } else {
+        alert('Nu exista tara cu acest cod: ' + trimmedValue);
+        return false;
+
+
+
+    }
 }
+
+
+//Modify this code. Need trim elem - In other words need remove blank space
+
+
+
 
 webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
@@ -406,48 +429,48 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         CSI_10 = parseInt(values['dec_table1_row_r10c1']);
     }
 
-    for (var i = 0; i < values.dec_dinamicTable_row_c1.length; i++) {
+    // for (var i = 0; i < values.dec_dinamicTable_row_c1.length; i++) {
 
-        var cod_tara = jQuery(fields_table1_cod[i]).val();
+    //     var cod_tara = jQuery(fields_table1_cod[i]).val();
 
-        if (
-            cod_tara === '051' ||
-            cod_tara === '031' ||
-            cod_tara === '112' ||
-            cod_tara === '398' ||
-            cod_tara === '417' ||
-            cod_tara === '643' ||
-            cod_tara === '762' ||
-            cod_tara === '795' ||
-            cod_tara === '804' ||
-            cod_tara === '860'
-        ) {
+    //     if (
+    //         cod_tara === '051' ||
+    //         cod_tara === '031' ||
+    //         cod_tara === '112' ||
+    //         cod_tara === '398' ||
+    //         cod_tara === '417' ||
+    //         cod_tara === '643' ||
+    //         cod_tara === '762' ||
+    //         cod_tara === '795' ||
+    //         cod_tara === '804' ||
+    //         cod_tara === '860'
+    //     ) {
 
-            if (!isNaN(parseInt(jQuery(fields_table1_c1[i]).val()))) {
-                Col1 = Col1 + parseInt(jQuery(fields_table1_c1[i]).val());
-            }
+    //         if (!isNaN(parseInt(jQuery(fields_table1_c1[i]).val()))) {
+    //             Col1 = Col1 + parseInt(jQuery(fields_table1_c1[i]).val());
+    //         }
 
-            if (!isNaN(parseInt(jQuery(fields_table1_c2[i]).val()))) {
-                Col2 = Col2 + parseInt(jQuery(fields_table1_c2[i]).val());
-            }
-        }
-    }
+    //         if (!isNaN(parseInt(jQuery(fields_table1_c2[i]).val()))) {
+    //             Col2 = Col2 + parseInt(jQuery(fields_table1_c2[i]).val());
+    //         }
+    //     }
+    // }
 
-    if (Col1 !== CSI_4) {
-        webform.errors.push({
-            'fieldName': 'dec_table1_row_r04c1',
-            'weight': 24,
-            'msg': Drupal.t('Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,804,860)')
-        });
-    }
+    // if (Col1 !== CSI_4) {
+    //     webform.errors.push({
+    //         'fieldName': 'dec_table1_row_r04c1',
+    //         'weight': 24,
+    //         'msg': Drupal.t('Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,804,860)')
+    //     });
+    // }
 
-    if (Col2 !== CSI_10) {
-        webform.errors.push({
-            'fieldName': 'dec_table1_row_r10c1',
-            'weight': 25,
-            'msg': Drupal.t('Cod eroare: 06-025 (Cap.1) Cap.I rd.10 col1 = Cap.2 col.2 suma rindurilor(051,031,112,398,417,643,762,795,804,860)')
-        });
-    }
+    // if (Col2 !== CSI_10) {
+    //     webform.errors.push({
+    //         'fieldName': 'dec_table1_row_r10c1',
+    //         'weight': 25,
+    //         'msg': Drupal.t('Cod eroare: 06-025 (Cap.1) Cap.I rd.10 col1 = Cap.2 col.2 suma rindurilor(051,031,112,398,417,643,762,795,804,860)')
+    //     });
+    // }
 
 
 // // Start ----------------------------Cod eroare: Wrong fiscal period!
