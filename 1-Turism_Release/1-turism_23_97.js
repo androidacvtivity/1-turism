@@ -23,7 +23,27 @@ function changeIdCountry(elem) {
 
     if (jQuery(elem).val() == elemnt.val())
         return;
-      elemnt.val(jQuery(elem).val()).change();
+
+
+    var fields_table1_c1 = jQuery('#tabcon tbody tr td:nth-child(4)').find('input');
+    var fields_table1_c2 = jQuery('#tabcon tbody tr td:nth-child(2)').find('select');
+
+
+
+    var ElementActiv = document.activeElement.id;
+    var IdElementActiv = ElementActiv.substring(25);
+
+
+
+    var field_name_cc = "CAP2_R_CC-" + IdElementActiv;
+    var country_val = jQuery(fields_table1_c2[IdElementActiv - 1]).val();
+    jQuery("#" + field_name_cc).val(country_val).trigger('change');
+
+
+    //   elemnt.val(jQuery(elem).val()).change();
+
+
+
       
 }
 

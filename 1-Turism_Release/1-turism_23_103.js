@@ -23,7 +23,47 @@ function changeIdCountry(elem) {
 
     if (jQuery(elem).val() == elemnt.val())
         return;
-      elemnt.val(jQuery(elem).val()).change();
+
+
+    var fields_table1_c1 = jQuery('#tabcon tbody tr td:nth-child(3)').find('input');
+
+   // var fields_table1_cod = jQuery('#tabcon tbody tr td:nth-child(3)').find('input');
+    var fields_table1_c2 = jQuery('#tabcon tbody tr td:nth-child(2)').find('select');
+
+
+
+    var ElementActiv = document.activeElement.id;
+
+    //CAP2_R_CC
+    var IdElementActiv = ElementActiv.substring(10);
+
+    var i = 0;
+    var cautare = 0;
+
+    for (i = 0; i < (fields_table1_c1.length - 1); i++) {
+        if ((jQuery(elem).val() == jQuery(fields_table1_c2[i]).val()) && ((IdElementActiv - 1) != i)) {
+            var val_y = jQuery(elem).val();
+            var selectedIndex = fields_table1_c2[i].selectedIndex;
+            var selection = fields_table1_c2[i].options[fields_table1_c2[i].selectedIndex].innerHTML;
+            mywebform_alert("Exista deja  tara - " + selection);
+            cautare = 1;
+        }
+    }
+
+
+
+
+
+    {
+    var field_name_cc = "CAP2_R_CC-" + IdElementActiv;
+    var country_val = jQuery(fields_table1_c2[IdElementActiv - 1]).val();
+    jQuery("#" + field_name_cc).val(country_val).trigger('change');
+    }
+
+    //   elemnt.val(jQuery(elem).val()).change();
+
+
+
       
 }
 
