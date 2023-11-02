@@ -68,28 +68,28 @@ function changeIdCountry(elem) {
 }
 
 
-function changeSelectCountry(elem) {
-    var originalValue = jQuery(elem).val().trim();
-    var trimmedValue = originalValue.replace(/\s/g, ''); // Remove all blank spaces
+// function changeSelectCountry(elem) {
+//     var originalValue = jQuery(elem).val().trim();
+//     var trimmedValue = originalValue.replace(/\s/g, ''); // Remove all blank spaces
 
-    if (trimmedValue === "") {
-        alert('Codul țării este gol');
-        return false;
-    }
+//     if (trimmedValue === "") {
+//         alert('Codul țării este gol');
+//         return false;
+//     }
 
-    var optionExists = jQuery(elem).closest('tr').find('select.select-country option[value="' + trimmedValue + '"]').length > 0;
+//     var optionExists = jQuery(elem).closest('tr').find('select.select-country option[value="' + trimmedValue + '"]').length > 0;
 
-    if (optionExists) {
-        jQuery(elem).closest('tr').find('select.select-country').val(trimmedValue).change();
-        return true;
-    } else {
-        alert('Nu exista tara cu acest cod: ' + trimmedValue);
-        return false;
+//     if (optionExists) {
+//         jQuery(elem).closest('tr').find('select.select-country').val(trimmedValue).change();
+//         return true;
+//     } else {
+//         alert('Nu exista tara cu acest cod: ' + trimmedValue);
+//         return false;
 
 
 
-    }
-}
+//     }
+// }
 
 webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;

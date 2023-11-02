@@ -45,7 +45,7 @@ function changeIdCountry(elem) {
         }
     }
 
-//I want in this segment of code add new logic 
+
 
     if (cautare == 1) {
         fields_table1_c2[IdElementActiv - 1].selectedIndex = 0;
@@ -64,32 +64,14 @@ function changeIdCountry(elem) {
 
 }
 
+
+
+
       
 }
 
 
-function changeSelectCountry(elem) {
-    var originalValue = jQuery(elem).val().trim();
-    var trimmedValue = originalValue.replace(/\s/g, ''); // Remove all blank spaces
 
-    if (trimmedValue === "") {
-        alert('Codul țării este gol');
-        return false;
-    }
-
-    var optionExists = jQuery(elem).closest('tr').find('select.select-country option[value="' + trimmedValue + '"]').length > 0;
-
-    if (optionExists) {
-        jQuery(elem).closest('tr').find('select.select-country').val(trimmedValue).change();
-        return true;
-    } else {
-        alert('Nu exista tara cu acest cod: ' + trimmedValue);
-        return false;
-
-
-
-    }
-}
 
 webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
@@ -488,8 +470,9 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
 
 // This is code in js in Drupal
-// Another validation must be added to this code - if the code (fields_table1_cod )is repeated, an error will be displayed 
+// Another validation must be added to this code - if the cod_tara is null , an error will be displayed 
 
+    var fields_table1_ca = jQuery('#tabcon tbody tr td:nth-child(1)').find('input');
     var fields_table1_cod = jQuery('#tabcon tbody tr td:nth-child(3)').find('input');
     var fields_table1_c1 = jQuery('#tabcon tbody tr td:nth-child(4)').find('input');
     var fields_table1_c2 = jQuery('#tabcon tbody tr td:nth-child(5)').find('input');
@@ -510,12 +493,18 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
     if (!isNaN(parseInt(values['CAP1_R10_C1']))) {
         CSI_10 = parseInt(values['CAP1_R10_C1']);
-    }
+
+       }
+
+       var cnt = 0;
 
     for (var i = 0; i < values.CAP2_R_C1.length; i++) {
 
         var cod_tara = jQuery(fields_table1_cod[i]).val();
 
+        var id = jQuery(fields_table1_ca[i]).val();
+        cnt  
+  
         if (
             cod_tara === '051' ||
             cod_tara === '031' ||
@@ -540,11 +529,26 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
 
 
-//here add code 
+//here add code
+
+
+        // This is code in js in Drupal
+        // Another validation must be added to this code - if the cod_tara is null , an error will be displayed 
+
+
+
+        // // Check if cod_tara is null or empty
+        // if ((cod_tara && (Col1 === 0  && Col2 === 0))) {
+        //     webform.errors.push({
+        //         'fieldName': 'CAP2_R_CA',
+        //         'weight': x,
+        //         'msg': Drupal.t('Cod eroare:06-035 Cod tara is null or empty')
+        //     });
+        // }
 
         if (encounteredCodes[cod_tara]) {
             webform.errors.push({
-                'fieldName': 'CAP2_R001_C1',
+                'fieldName': 'CAP2_R_CC',
                 'weight': x,
                 'msg': Drupal.t('Cod eroare: 06-034 Se repeta codul cod tara - ' + cod_tara)
             });
@@ -567,6 +571,8 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
             'msg': Drupal.t('Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,804,860)')
         });
     }
+
+    
 
     if (Col2 !== CSI_10) {
         webform.errors.push({
