@@ -498,27 +498,54 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
 //---------------------------------------------------------------
 
+
+    cod_tara_field = 'CAP2_R_CC';
+    field_col1 = 'CAP2_R_C1';
+    field_col2 = 'CAP2_R_C2';
+
+
     for (var i = 0; i < values.CAP2_R_CB.length; i++){
 
-        cod_tara_field = 'CAP2_R_CC';
+       
+        var some_field_is_filled = values[field_col1][i] != '' || values[field_col2][i] != '';
+
         var cod_tara = jQuery(fields_table1_cod[i]).val();
-
         var cod_ca = jQuery(fields_table1_ca[i]).val();
-
         var id = jQuery(fields_table1_ca[i]).val();
 
-        if (1) {
+        if (!values[cod_tara_field][i]){
+            if (some_field_is_filled) {
             webform.errors.push({
                 'fieldName': cod_tara_field,
                 'weight': 24,
                 'index': i,
-                'msg': concatMessage('13-024', '', Drupal.t('In Rind @row Codul tarii trebue selectat', {
+                'msg': concatMessage('06-037', '', Drupal.t('In Rind @row Codul tarii trebue selectat', {
                     '@row': id
                 }))
             });
-        }
+         }
 
     }
+
+
+    else{
+            if (values[cod_tara_field][i]) {
+                if (!some_field_is_filled || values[field_col1][i] + values[field_col2][i] === 0) {
+                    webform.errors.push({
+                        'fieldName': cod_tara_field,
+                        'weight': 25,
+                        'index': i,
+                        'msg': concatMessage('06-038', '', Drupal.t('In Rind @row Tara @country lipsesc datele', {
+                            '@row': id,
+                            '@country': values[cod_tara_field][i],
+                        }))
+                    });
+                }
+
+            }
+
+    }
+}
 
 //---------------------------------------------------------------
 
