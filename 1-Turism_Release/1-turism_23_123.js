@@ -67,13 +67,20 @@ function changeIdCountry(elem) {
 }
 
 webform.validators.turism1_23 = function (v, allowOverpass) {
-    var values = Drupal.settings.mywebform.values;
+    var values = Drupal.settings.mywebform.values, 
+        t, i, x;
+
+
+//-----------------------------------------
 
     // Checking  telefon 
     if (!values.PHONE || !/^[0-9]{9}$/.test(values.PHONE)) {
         webform.errors.push({
             'fieldName': 'PHONE',
-            'msg': Drupal.t(' Cod eroare: A.09 Introduceți doar un număr de telefon format din 9 cifre')
+            'weight': 29,
+           // 'msg': Drupal.t(' Cod eroare: A.09 Introduceți doar un număr de telefon format din 9 cifre')
+            'msg': concatMessage('Cod eroare: A.09', '', Drupal.t('Introduceți doar un număr de telefon format din 9 cifre'))
+
         });
     }
 
@@ -81,7 +88,10 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     if (values.PHONE && values.PHONE[0] !== '0') {
         webform.errors.push({
             'fieldName': 'PHONE',
-            'msg': Drupal.t(' Cod eroare: A.09 Prima cifră a numărului de telefon trebuie să fie 0')
+             'weight': 30,
+           // 'msg': Drupal.t(' Cod eroare: A.09 Prima cifră a numărului de telefon trebuie să fie 0')
+
+            'msg': concatMessage('Cod eroare: A.09', '', Drupal.t('Prima cifră a numărului de telefon trebuie să fie 0'))
         });
     }
     //End  Checking  telefon
@@ -89,10 +99,14 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     if (!values.STREET) {
         webform.errors.push({
             'fieldName': 'STREET',
-            'msg': Drupal.t('Câmpul nu este completat')
+            'weight': 31,
+            //'msg': Drupal.t('Câmpul nu este completat')
+            'msg': concatMessage(' ', ' ', Drupal.t('Câmpul nu este completat'))
         });
     }
 
+
+    //-------------------------------------------
 
     var arr1_columns = [1, 2, 4];
     var arr1_inputs = ['01', '02', '03', '04', '31', '05', '32', '33', '34', '09', '10', '91', '92', '93', '94', '11'];
@@ -578,15 +592,35 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         return sort_errors_warinings(a, b);
     });
 
-    webform.errors.sort(function (a, b) {
-        return sort_errors_warinings(a, b);
-    });
+  
 
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
 
 
+
+function concatMessage(errorCode, fieldTitle, msg) {
+    var titleParts = [];
+
+    if (errorCode) {
+        titleParts.push(getErrorMessage(errorCode));
+    }
+
+    if (fieldTitle) {
+        titleParts.push(fieldTitle);
+    }
+
+    if (titleParts.length) {
+        msg = titleParts.join(', ') + '. ' + msg;
+    }
+
+    return msg;
+}
+
+function getErrorMessage(errorCode) {
+    return Drupal.t('Error code: @error_code', { '@error_code': errorCode });
+}
 
 function sort_errors_warinings(a, b) {
     if (!a.hasOwnProperty('weight')) {
