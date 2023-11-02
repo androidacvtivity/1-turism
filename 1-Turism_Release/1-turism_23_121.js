@@ -578,15 +578,35 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         return sort_errors_warinings(a, b);
     });
 
-    webform.errors.sort(function (a, b) {
-        return sort_errors_warinings(a, b);
-    });
+  
 
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
 
 
+
+function concatMessage(errorCode, fieldTitle, msg) {
+    var titleParts = [];
+
+    if (errorCode) {
+        titleParts.push(getErrorMessage(errorCode));
+    }
+
+    if (fieldTitle) {
+        titleParts.push(fieldTitle);
+    }
+
+    if (titleParts.length) {
+        msg = titleParts.join(', ') + '. ' + msg;
+    }
+
+    return msg;
+}
+
+function getErrorMessage(errorCode) {
+    return Drupal.t('Error code: @error_code', { '@error_code': errorCode });
+}
 
 function sort_errors_warinings(a, b) {
     if (!a.hasOwnProperty('weight')) {
