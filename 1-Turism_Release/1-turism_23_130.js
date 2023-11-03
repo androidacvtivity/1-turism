@@ -17,7 +17,10 @@
 })(jQuery);
 
 
-//It is js code in Drupal 
+//It is js code in Drupal
+
+//In acest cod doresc sa adaug logica.
+//Daca s-a introdus in celula valoare negativa sa afiseze  //mywebform_alert("Valoarea este negativa - " + selection_col);
 function changeIdCountry(elem) {
     
     var elemnt = jQuery(elem).closest('tr').find('input.input-country');
@@ -51,13 +54,12 @@ function changeIdCountry(elem) {
         }
 
 
+
+           //In acest cod doresc sa adaug logica.
+           //Daca s-a introdus in celula valoare negativa sa afiseze  //mywebform_alert("Valoarea este negativa - " + selection_col);
         if ((jQuery(fields_table1_col1[i]).val() < 0 )) {
             
-            //var val_y = jQuery(elem).val();
-            
             var selectedIndex = fields_table1_col1[i].selectedIndex;
-
-
             var selection_col = fields_table1_col1[i].options[fields_table1_col1[i].selectedIndex].innerHTML;
             mywebform_alert("Valoarea este negativa - " + selection_col);
            
@@ -80,7 +82,8 @@ function changeIdCountry(elem) {
 
     {
     var field_name_cc = "CAP2_R_CC-" + IdElementActiv;
-    var country_val = jQuery(fields_table1_c2[IdElementActiv - 1]).val();
+    var country_val = 1;
+    //jQuery(fields_table1_c2[IdElementActiv - 1]).val();
     jQuery("#" + field_name_cc).val(country_val).trigger('change');
 
 }

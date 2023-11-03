@@ -21,7 +21,7 @@
 function changeIdCountry(elem) {
     
     var elemnt = jQuery(elem).closest('tr').find('input.input-country');
-   // var elemnt1 = jQuery(elem).closest('tr').find('input.select-country');
+    var elemnt1 = jQuery(elem).closest('tr').find('input.select-country');
 
     if (jQuery(elem).val() == elemnt.val())
         return;
@@ -29,11 +29,6 @@ function changeIdCountry(elem) {
 
     var fields_table1_c1 = jQuery('#tabcon tbody tr td:nth-child(3)').find('input');
     var fields_table1_c2 = jQuery('#tabcon tbody tr td:nth-child(2)').find('select');
-
-
-    var fields_table1_col1 = jQuery('#tabcon tbody tr td:nth-child(4)').find('input');
-    var fields_table1_col2 = jQuery('#tabcon tbody tr td:nth-child(5)').find('input');
-
     var ElementActiv = document.activeElement.id;
     var IdElementActiv = ElementActiv.substring(10);
 
@@ -41,7 +36,6 @@ function changeIdCountry(elem) {
     var cautare = 0;
 
     for (i = 0; i < (fields_table1_c1.length - 1); i++) {
-       
         if ((jQuery(elem).val() == jQuery(fields_table1_c2[i]).val()) && ((IdElementActiv - 1) != i)) {
             var val_y = jQuery(elem).val();
             var selectedIndex = fields_table1_c2[i].selectedIndex;
@@ -49,21 +43,6 @@ function changeIdCountry(elem) {
             mywebform_alert("Exista deja  tara - " + selection);
             cautare = 1;
         }
-
-
-        if ((jQuery(fields_table1_col1[i]).val() < 0 )) {
-            
-            //var val_y = jQuery(elem).val();
-            
-            var selectedIndex = fields_table1_col1[i].selectedIndex;
-
-
-            var selection_col = fields_table1_col1[i].options[fields_table1_col1[i].selectedIndex].innerHTML;
-            mywebform_alert("Valoarea este negativa - " + selection_col);
-           
-        }
-     
-
     }
 
 
