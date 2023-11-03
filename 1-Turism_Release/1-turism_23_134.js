@@ -572,16 +572,31 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         var id = jQuery(fields_table1_ca[i]).val();
 
         if (values[cod_tara_field][i]) {
-            if (some_field_is_filled) {
+            if (values[field_col1][i] < 0) {
                 webform.errors.push({
-                    'fieldName': cod_tara_field,
+                    'fieldName': field_col1,
                     'weight': 24,
                     'index': i,
-                    'msg': concatMessage('06-037', '', Drupal.t('In Rind @row valorile trebuie sa nu fie negative', {
+                    'msg': concatMessage('06-039', '', Drupal.t('In Rind @row valorile trebuie sa nu fie negative', {
                         '@row': id
                     }))
                 });
             }
+
+            if (values[field_col2][i] < 0) {
+                webform.errors.push({
+                    'fieldName': field_col2,
+                    'weight': 24,
+                    'index': i,
+                    'msg': concatMessage('06-039', '', Drupal.t('In Rind @row valorile trebuie sa nu fie negative', {
+                        '@row': id
+                    }))
+                });
+            }
+
+
+
+
 
         }
 

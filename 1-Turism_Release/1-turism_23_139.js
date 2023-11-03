@@ -553,7 +553,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
 //----------------------------------------------------------------------------------
 
-
+//Start 06-039
     //---------------------------------------------------------------
 
 
@@ -572,19 +572,65 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
         var id = jQuery(fields_table1_ca[i]).val();
 
         if (values[cod_tara_field][i]) {
-            if (some_field_is_filled) {
+            if (values[field_col1][i] < 0) {
                 webform.errors.push({
-                    'fieldName': cod_tara_field,
+                    'fieldName': field_col1,
                     'weight': 24,
                     'index': i,
-                    'msg': concatMessage('06-037', '', Drupal.t('In Rind @row valorile trebuie sa nu fie negative', {
-                        '@row': id
+                    'msg': concatMessage('06-039', '', Drupal.t('In Rind @row valoarea - (@valoarea)  trebuie sa nu fie negativa', {
+                        '@row': id,
+                        '@valoarea': values[field_col1][i],
                     }))
                 });
             }
 
+            if (values[field_col2][i] < 0) {
+                webform.errors.push({
+                    'fieldName': field_col2,
+                    'weight': 24,
+                    'index': i,
+                    'msg': concatMessage('06-039', '', Drupal.t('In Rind @row valoarea - (@valoarea)  trebuie sa nu fie negativa', {
+                        '@row': id,
+                        '@valoarea': values[field_col2][i],
+                    }))
+                });
+            }
+
+            if (values[id][i] && (!values[cod_tara_field][i] && !values[cod_ca][i]) ) {
+               // if (values[field_col1][i] < 0) {
+                    webform.errors.push({
+                        'fieldName': field_col1,
+                        'weight': 24,
+                        'index': i,
+                        'msg': concatMessage('06-040', '', Drupal.t('Rind @row  nu este completat ', {
+                            '@row': id
+                           
+                        }))
+                    });
+            
         }
 
+            if (values[id][i] && (!values[cod_tara_field][i] && !values[cod_ca][i])) {
+                // if (values[field_col1][i] < 0) {
+                webform.errors.push({
+                    'fieldName': field_col2,
+                    'weight': 24,
+                    'index': i,
+                    'msg': concatMessage('06-040', '', Drupal.t('Rind @row  nu este completat ', {
+                        '@row': id
+
+                    }))
+                });
+
+            }
+
+
+
+
+
+            
+
+        // //End 06-039
 
         // else {
         //     if (values[cod_tara_field][i]) {

@@ -548,71 +548,45 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 }
 
 //---------------------------------------------------------------
-
-
-
-//----------------------------------------------------------------------------------
-
-
-    //---------------------------------------------------------------
-
-
+    //-- Start 06-039
     cod_tara_field = 'CAP2_R_CC';
     field_col1 = 'CAP2_R_C1';
     field_col2 = 'CAP2_R_C2';
 
-
     for (var i = 0; i < values.CAP2_R_CB.length; i++) {
 
-
         var some_field_is_filled = values[field_col1][i] < 0 || values[field_col2][i] < 0;
-
         var cod_tara = jQuery(fields_table1_cod[i]).val();
         var cod_ca = jQuery(fields_table1_ca[i]).val();
         var id = jQuery(fields_table1_ca[i]).val();
-
         if (values[cod_tara_field][i]) {
-            if (some_field_is_filled) {
+            if (values[field_col1][i] < 0) {
                 webform.errors.push({
-                    'fieldName': cod_tara_field,
+                    'fieldName': field_col1,
                     'weight': 24,
                     'index': i,
-                    'msg': concatMessage('06-037', '', Drupal.t('In Rind @row valorile trebuie sa nu fie negative', {
-                        '@row': id
+                    'msg': concatMessage('06-039', '', Drupal.t('In Rind @row valoarea - (@valoarea)  trebuie sa nu fie negativa', {
+                        '@row': id,
+                        '@valoarea': values[field_col1][i],
+                    }))
+                });
+            }
+
+            if (values[field_col2][i] < 0) {
+                webform.errors.push({
+                    'fieldName': field_col2,
+                    'weight': 24,
+                    'index': i,
+                    'msg': concatMessage('06-039', '', Drupal.t('In Rind @row valoarea - (@valoarea)  trebuie sa nu fie negativa', {
+                        '@row': id,
+                        '@valoarea': values[field_col2][i],
                     }))
                 });
             }
 
         }
-
-
-        // else {
-        //     if (values[cod_tara_field][i]) {
-        //         if (!some_field_is_filled || values[field_col1][i] + values[field_col2][i] === 0) {
-        //             webform.errors.push({
-        //                 'fieldName': cod_tara_field,
-        //                 'weight': 25,
-        //                 'index': i,
-        //                 'msg': concatMessage('06-038', '', Drupal.t('In Rind @row Tara @country lipsesc datele', {
-        //                     '@row': id,
-        //                     '@country': values[cod_tara_field][i],
-        //                 }))
-        //             });
-        //         }
-
-        //     }
-
-        // }
-    }
-
-    //---------------------------------------------------------------
-
-
-//------------------------------------------------------------------------------
-       
-
-
-
+//-- End  06-039
+//--------------------------------------------------------
     for (var i = 0; i < values.CAP2_R_C1.length; i++) {
 
         var cod_tara = jQuery(fields_table1_cod[i]).val();
@@ -698,7 +672,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     }
 
 
-
+    }
 
 
 

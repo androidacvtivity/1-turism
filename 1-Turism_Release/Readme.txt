@@ -1,0 +1,1 @@
+Cap.2 COL1 si COL2 trebuie sa contina valori pozitive.
