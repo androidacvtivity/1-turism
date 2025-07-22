@@ -22,10 +22,81 @@
             var values = Drupal.settings.mywebform.values;
             watchLiveValidation_A09();
             toggle_A09(values);
+            watchAutoSum_CAP2_R001_C1();
+            watchAutoSum_CAP2_R001_C2();
         }
     }
 })(jQuery);
+//----------------------------------------------------------------
+function watchAutoSum_CAP2_R001_C2() {
+    const inputSelector = 'input[name^="CAP2_R_C2"]';
+    const targetSelector = '#CAP2_R001_C2';
 
+    function getIntValue(el) {
+        const val = parseInt(jQuery(el).val());
+        return isNaN(val) ? 0 : val;
+    }
+
+    function updateSum() {
+        let total = 0;
+        jQuery(inputSelector).each(function () {
+            total += getIntValue(this);
+        });
+
+        jQuery(targetSelector).val(total > 0 ? total : '');
+    }
+
+    // Stilul pe câmpul total
+    jQuery(targetSelector).prop('readonly', true).css({
+        'background-color': '#eee',
+        'border': 'none',
+        'text-align': 'right'
+    });
+
+    // Ascultă evenimentele
+    const events = 'input change keyup blur';
+    jQuery(document).on(events, inputSelector, updateSum);
+
+    // Inițial
+    updateSum();
+}
+
+//---------------------------------------------------------------
+
+function watchAutoSum_CAP2_R001_C1() {
+    const inputSelector = 'input[name^="CAP2_R_C1"]';
+    const targetSelector = '#CAP2_R001_C1';
+
+    function getIntValue(el) {
+        const val = parseInt(jQuery(el).val());
+        return isNaN(val) ? 0 : val;
+    }
+
+    function updateSum() {
+        let total = 0;
+        jQuery(inputSelector).each(function () {
+            total += getIntValue(this);
+        });
+
+        jQuery(targetSelector).val(total > 0 ? total : '');
+    }
+
+    // Stilul pe câmpul total
+    jQuery(targetSelector).prop('readonly', true).css({
+        'background-color': '#eee',
+        'border': 'none',
+        'text-align': 'right'
+    });
+
+    // Ascultă evenimentele
+    const events = 'input change keyup blur';
+    jQuery(document).on(events, inputSelector, updateSum);
+
+    // Inițial
+    updateSum();
+}
+
+//----------------------------------------------------------------
 
 function watchLiveValidation_A09() {
     const inputSelector = '#PHONE';
