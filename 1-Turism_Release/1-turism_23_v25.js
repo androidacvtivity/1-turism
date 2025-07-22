@@ -109,6 +109,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
     validate_06_038();
+    validate_CAP2_CA_CB_CC();
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -117,6 +118,36 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+
+function validate_CAP2_CA_CB_CC() {
+    const values = Drupal.settings.mywebform.values;
+    const field_CA = 'CAP2_R_CA';
+    const field_CB = 'CAP2_R_CB';
+    const field_CC = 'CAP2_R_CC';
+    const id = 'CAP.2';
+
+    for (let i = 0; i < values[field_CA].length; i++) {
+        const val_CA = parseInt(values[field_CA][i]) || 0;
+        const val_CB = values[field_CB][i];
+        const val_CC = values[field_CC][i];
+
+        const cb_completat = val_CB !== undefined && val_CB !== null && val_CB !== '';
+        const cc_completat = val_CC !== undefined && val_CC !== null && val_CC !== '';
+
+        if (val_CA > 1 && (!cb_completat || !cc_completat)) {
+            webform.errors.push({
+                fieldName: field_CA,
+                index: i,
+                weight: 30,
+                msg: concatMessage('06-038.1', '', Drupal.t(
+                    'În rând @row: Dacă Nr.rand  > 1, trebuie completate și Ţara și Codul ţării',
+                    { '@row': id }
+                ))
+            });
+        }
+    }
+}
 
 
 function validate_06_038() {

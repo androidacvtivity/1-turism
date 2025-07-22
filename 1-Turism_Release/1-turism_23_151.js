@@ -630,6 +630,25 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
     //---------------------------------------------------------------
 
+    // Validare: daca CAP2_R_CA este  si este  > 1 si CAP2_R_CB nu este completat si CAP2_R_CB nu eset completat
+//daca CAP2_R_CA este  si este  > 1 trebuie sa fie completat CAP2_R_CB si CAP2_R_CC
+    for (var i = 0; i < values.CAP2_R_CA.length; i++) {
+        var ca_value = values.CAP2_R_CA[i];
+        var cb_value = values.CAP2_R_CB[i];
+        var cc_value = values.CAP2_R_CC[i];
+
+        if (ca_value && ca_value > 1 && (!cb_value || !cc_value)) {
+            webform.errors.push({
+                'fieldName': 'CAP2_R_CA',
+                'weight': 26,
+                'index': i,
+                'msg': concatMessage('06-041', '', Drupal.t('In Rind @row CAP2_R_CA este completat si > 1, dar CAP2_R_CB sau CAP2_R_CC nu sunt completate', {
+                    '@row': ca_value
+                }))
+            });
+        }
+    }
+   
 
 //---------------------------------
     //Start 06-040
