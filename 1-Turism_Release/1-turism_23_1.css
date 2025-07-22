@@ -5,3 +5,8 @@
 #dec_group2_adres {
     width: 450px;
 }
+
+.invalid-country {
+    border: 2px solid red !important;
+    background-color: #ffe6e6;
+}
