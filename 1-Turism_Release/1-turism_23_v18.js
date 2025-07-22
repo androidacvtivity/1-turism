@@ -27,6 +27,9 @@ function changeSelectCountry(elem) {
     var $select = $row.find('select.select-country');
 
     var gasit = false;
+    var duplicat = false;
+
+    // verificăm dacă codul introdus există în dropdown
     $select.find('option').each(function (index, opt) {
         if (String(opt.value) === codIntrodus) {
             $select.prop('selectedIndex', index);
@@ -34,6 +37,28 @@ function changeSelectCountry(elem) {
             return false;
         }
     });
+
+    // verificăm dacă codul introdus există deja în alt rând
+    var allInputs = jQuery('input[name^="CAP2_R_CC"]');
+    var allSelects = jQuery('select.select-country');
+    var currentIndex = allInputs.index(elem);
+
+    allSelects.each(function (i, otherSelect) {
+        if (i !== currentIndex && jQuery(otherSelect).val() === codIntrodus) {
+            var selectedIndex = otherSelect.selectedIndex;
+            var selection = otherSelect.options[selectedIndex].innerHTML;
+            mywebform_alert("Exista deja  tara - " + selection);
+            duplicat = true;
+            return false;
+        }
+    });
+
+    if (duplicat) {
+        jQuery(elem).val('');
+        $select.prop('selectedIndex', 0);
+        jQuery(elem).addClass('invalid-country');
+        return;
+    }
 
     if (!gasit) {
         jQuery(elem).addClass('invalid-country');
@@ -64,7 +89,7 @@ function changeIdCountry(elem) {
             var val_y = jQuery(elem).val();
             var selectedIndex = fields_table1_c2[i].selectedIndex;
             var selection = fields_table1_c2[i].options[selectedIndex].innerHTML;
-            mywebform_alert("Exista deja  tara - " + selection); //Aduga aceasta functionalitatea si in changeSelectCountry(elem) 
+            mywebform_alert("Exista deja  tara - " + selection);
             cautare = 1;
         }
     }
