@@ -347,6 +347,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_023();
     validate_06_031();
     validate_06_032();
+    validate_06_003();
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -355,6 +356,37 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+
+function validate_06_003() {
+    const values = Drupal.settings.mywebform.values;
+    const id = 'CAP.1';
+
+    for (let i = 1; i <= 99; i++) {
+        const r = String(i).padStart(2, '0');
+        if (r === '16') continue;
+
+        const f2 = `CAP1_R${r}_C2`;
+        const f4 = `CAP1_R${r}_C4`;
+
+        if (values[f2] !== undefined && values[f4] !== undefined) {
+            const v2 = parseInt(values[f2]) || 0;
+            const v4 = parseInt(values[f4]) || 0;
+
+            if (v4 < v2) {
+                webform.errors.push({
+                    fieldName: f4,
+                    index: 0,
+                    weight: 3,
+                    msg: concatMessage('06-003', '', Drupal.t(
+                        'Cod eroare: 06-003 (Cap.1) Rând @r: col.4 (@v4) < col.2 (@v2)',
+                        { '@r': r, '@v4': v4, '@v2': v2 }
+                    ))
+                });
+            }
+        }
+    }
+}
 
 
 function validate_06_032() {
