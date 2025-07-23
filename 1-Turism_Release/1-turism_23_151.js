@@ -807,6 +807,11 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
 
     }
 
+    //Analizeaza fisierile html, cvs, js - (in csv sunt variabilile si denumirea variabililor)
+    //Creaza validarea 
+//    'msg': Drupal.t('Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,804,860)') -
+
+
     if (Col1 !== CSI_4) {
         webform.errors.push({
             'fieldName': 'CAP1_R04_C1',
