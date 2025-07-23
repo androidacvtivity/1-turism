@@ -353,6 +353,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_001();
     validate_06_002();
     validate_06_006();
+    validate_06_007();  
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -361,6 +362,41 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+function validate_06_007() {
+    const values = Drupal.settings.mywebform.values;
+    const id = 'CAP.1';
+
+    const coloane = ['C1', 'C2', 'C4'];
+    const randuri_sum = ['31', '32', '33', '34'];
+
+    coloane.forEach(col => {
+        const field_r3 = `CAP1_R03_${col}`;
+        const val_r3 = parseInt(values[field_r3]) || 0;
+
+        let suma = 0;
+        randuri_sum.forEach(r => {
+            const field = `CAP1_R${r}_${col}`;
+            suma += parseInt(values[field]) || 0;
+        });
+
+        if (val_r3 !== suma) {
+            webform.errors.push({
+                fieldName: field_r3,
+                index: 0,
+                weight: 7,
+                msg: concatMessage('06-007', '', Drupal.t(
+                    'Cod eroare: 06-007 (Cap.1) col.1,2,4 atunci rd.03=rd.(31+32+33+34) col.@col: rd.03 (@v3) ≠ sum(rd.31-34) = @sum',
+                    {
+                        '@col': col,
+                        '@v3': val_r3,
+                        '@sum': suma
+                    }
+                ))
+            });
+        }
+    });
+}
 
 function validate_06_006() {
     const values = Drupal.settings.mywebform.values;
@@ -381,7 +417,7 @@ function validate_06_006() {
                 index: 0,
                 weight: 6,
                 msg: concatMessage('06-006', '', Drupal.t(
-                    'Cod eroare: 06-006 (Cap.1) col.@col: rd.03 (@v3) < rd.04 (@v4)',
+                    'Cod eroare: 06-006 (Cap.1) rd.03>=rd.04 col.@col: rd.03 (@v3) < rd.04 (@v4)',
                     {
                         '@col': col,
                         '@v3': val_r3,
@@ -514,7 +550,7 @@ function validate_06_004() {
                     index: 0,
                     weight: 4,
                     msg: concatMessage('06-004', '', Drupal.t(
-                        'Cod eroare: 06-004 (Cap.1) Rând @r: col.4 / col.2 = @rap < 1',
+                        'Cod eroare: 06-004 (Cap.1) col4/col2>=1  Rând @r: col.4 / col.2 = @rap < 1',
                         {
                             '@r': r,
                             '@rap': (v4 / v2).toFixed(2)
@@ -547,7 +583,7 @@ function validate_06_003() {
                     index: 0,
                     weight: 3,
                     msg: concatMessage('06-003', '', Drupal.t(
-                        'Cod eroare: 06-003 (Cap.1) Rând @r: col.4 (@v4) < col.2 (@v2)',
+                        'Cod eroare: 06-003 (Cap.1) col4>=col2 Rând @r: col.4 (@v4) < col.2 (@v2)',
                         { '@r': r, '@v4': v4, '@v2': v2 }
                     ))
                 });
