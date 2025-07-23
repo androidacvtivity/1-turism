@@ -343,6 +343,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_CAP2_no_negative_values();
     validate_06_024();
     validate_06_025();
+    validate_06_022();
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -351,6 +352,40 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+function validate_06_022() {
+    const values = Drupal.settings.mywebform.values;
+
+    const field_cap1 = 'CAP1_R03_C1';
+    const field_cap2 = 'CAP2_R001_C1';
+
+    const val_cap1 = parseInt(values[field_cap1]) || 0;
+    const val_cap2 = parseInt(values[field_cap2]) || 0;
+
+    if (val_cap1 !== val_cap2) {
+        const msgText = concatMessage('06-022', '', Drupal.t(
+            'Cod eroare: 06-022 (Cap.1) Cap.I rd.03 col1 (@val1) ≠ Cap.II rd.001 col1 (@val2)',
+            {
+                '@val1': val_cap1,
+                '@val2': val_cap2
+            }
+        ));
+
+        webform.errors.push({
+            fieldName: field_cap1,
+            index: 0,
+            weight: 22,
+            msg: msgText
+        });
+
+        webform.errors.push({
+            fieldName: field_cap2,
+            index: 0,
+            weight: 22,
+            msg: msgText
+        });
+    }
+}
+//--------------------------------------------------
 
 function validate_06_025() {
     const values = Drupal.settings.mywebform.values;
