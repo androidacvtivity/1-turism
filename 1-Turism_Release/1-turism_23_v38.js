@@ -359,7 +359,7 @@ function validate_06_024() {
     const field_cod_tara = 'CAP2_R_CC';
     const field_val = 'CAP2_R_C1';
 
-    const coduri_selectate = ['051', '031', '112', '398', '417', '643', '762', '795', '804', '860'];
+    const coduri_selectate = ['051', '031', '112', '398', '417', '643', '762', '795', '860'];
 
     const total_CAP1_R04 = parseInt(values[cap1_field]) || 0;
     let suma_CAP2 = 0;
@@ -379,7 +379,7 @@ function validate_06_024() {
             index: 0,
             weight: 35,
             msg: concatMessage('06-024', '', Drupal.t(
-                'Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,804,860)'
+                'Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,860)'
             ))
         });
     }
