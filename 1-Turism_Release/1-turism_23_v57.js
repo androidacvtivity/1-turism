@@ -351,6 +351,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_004();
     validate_06_028();
     validate_06_001();
+    validate_06_002();
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -359,6 +360,37 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+function validate_06_002() {
+    const values = Drupal.settings.mywebform.values;
+    const id = 'CAP.1';
+
+    const randuri = ['32', '33', '34', '92', '93', '94'];
+
+    randuri.forEach(r => {
+        const f1 = `CAP1_R${r}_C1`;
+        const f2 = `CAP1_R${r}_C2`;
+
+        const v1 = parseInt(values[f1]) || 0;
+        const v2 = parseInt(values[f2]) || 0;
+
+        if (v1 !== v2) {
+            webform.errors.push({
+                fieldName: f1,
+                index: 0,
+                weight: 2,
+                msg: concatMessage('06-002', '', Drupal.t(
+                    'Cod eroare: 06-002 (Cap.1) Rând @r: col.1 (@v1) ≠ col.2 (@v2)',
+                    {
+                        '@r': r,
+                        '@v1': v1,
+                        '@v2': v2
+                    }
+                ))
+            });
+        }
+    });
+}
 
 function validate_06_001() {
     const values = Drupal.settings.mywebform.values;
@@ -689,7 +721,6 @@ function validate_06_022() {
     }
 }
 //--------------------------------------------------
-
 function validate_06_025() {
     const values = Drupal.settings.mywebform.values;
 
@@ -717,13 +748,18 @@ function validate_06_025() {
             index: 0,
             weight: 36,
             msg: concatMessage('06-025', '', Drupal.t(
-                'Cod eroare: 06-025 (Cap.1) Cap.I rd.10 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,860)'
+                'Cod eroare: 06-025 (Cap.1) Cap.I rd.10 col1 (@cap1) ≠ suma Cap.II col.1 pe coduri (051,031,112,398,417,643,762,795,860) = @sum',
+                {
+                    '@cap1': total_cap1,
+                    '@sum': suma_cap2
+                }
             ))
         });
     }
 }
-//--------------------------------------------------
 
+//--------------------------------------------------
+//Show values
 function validate_06_024() {
     const values = Drupal.settings.mywebform.values;
 
@@ -751,7 +787,11 @@ function validate_06_024() {
             index: 0,
             weight: 35,
             msg: concatMessage('06-024', '', Drupal.t(
-                'Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 = Cap.2 col.1 suma rindurilor(051,031,112,398,417,643,762,795,860)'
+                'Cod eroare: 06-024 (Cap.1) Cap.I rd.04 col1 (@cap1) ≠ suma Cap.II col.1 pe coduri (051,031,112,398,417,643,762,795,860) = @sum',
+                {
+                    '@cap1': total_CAP1_R04,
+                    '@sum': suma_CAP2
+                }
             ))
         });
     }
