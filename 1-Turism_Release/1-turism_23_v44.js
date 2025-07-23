@@ -345,6 +345,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_025();
     validate_06_022();
     validate_06_023();
+    validate_06_031();
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -353,6 +354,38 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+
+function validate_06_031() {
+    const values = Drupal.settings.mywebform.values;
+
+    const id = 'CAP.1';
+    const randuri = ['01', '02', '03', '09', '11'];
+
+    randuri.forEach(r => {
+        const field_C1 = `CAP1_R${r}_C1`;
+        const field_C5 = `CAP1_R${r}_C5`;
+
+        const val_C1 = parseInt(values[field_C1]) || 0;
+        const val_C5 = parseInt(values[field_C5]) || 0;
+
+        if (val_C1 > 0 && val_C5 <= 0) {
+            const msg = concatMessage('06-031', '', Drupal.t(
+                'Cod eroare: 06-031 (Cap.1) Dacă rd.@r col.1 > 0, atunci și col.5 trebuie să fie > 0 (col1=@c1, col5=@c5)',
+                { '@r': r, '@c1': val_C1, '@c5': val_C5 }
+            ));
+
+            webform.errors.push({
+                fieldName: field_C5,
+                index: 0,
+                weight: 31,
+                msg: msg
+            });
+        }
+    });
+}
+
+
 
 
 function validate_06_023() {
