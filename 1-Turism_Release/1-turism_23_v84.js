@@ -2,10 +2,10 @@
     Drupal.behaviors.turism1_23 = {
         attach: function (context, settings) {
 
-            // ✅ Modifică opțiunea pentru codul 528 din dropdown (Țările de Jos)
+            // Modifică textul pentru Țările de Jos (Olanda)
             jQuery('select.select-country option', context).each(function () {
                 if (jQuery(this).val() === '528') {
-                    jQuery(this).text('Țările de Jos (Olanda), 528');
+                    jQuery(this).text('ȚĂRILE DE JOS (OLANDA), 528');
                 }
             });
 
@@ -1622,7 +1622,7 @@ function validate_CAP2_CA_CB_CC() {
     }
 }
 
-
+//Here is necessary 
 function validate_06_038() {
     const values = Drupal.settings.mywebform.values;
     const id = 'CAP.2';
