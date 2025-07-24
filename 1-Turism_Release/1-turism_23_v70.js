@@ -366,6 +366,8 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_017();  
     validate_06_018();  
     validate_06_019();  
+    validate_06_022();  
+    validate_06_023();  
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -374,6 +376,63 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+function validate_06_022() {
+    const values = Drupal.settings.mywebform.values;
+
+    const cap1 = parseInt(values['CAP1_R03_C1']) || 0;
+    const cap2 = parseInt(values['CAP2_R001_C1']) || 0;
+
+    if (cap1 !== cap2) {
+        webform.errors.push({
+            fieldName: 'CAP1_R03_C1',
+            index: 0,
+            weight: 22,
+            msg: concatMessage('06-022', '', Drupal.t(
+                'Cod eroare: 06-022 (Cap.1) rd.03 col.1 (@v1) ≠ Cap.II rd.001 col.1 (@v2)',
+                { '@v1': cap1, '@v2': cap2 }
+            ))
+        });
+        webform.errors.push({
+            fieldName: 'CAP2_R001_C1',
+            index: 0,
+            weight: 22,
+            msg: concatMessage('06-022', '', Drupal.t(
+                'Cod eroare: 06-022 (Cap.1) rd.03 col.1 (@v1) ≠ Cap.II rd.001 col.1 (@v2)',
+                { '@v1': cap1, '@v2': cap2 }
+            ))
+        });
+    }
+}
+
+function validate_06_023() {
+    const values = Drupal.settings.mywebform.values;
+
+    const cap1 = parseInt(values['CAP1_R09_C1']) || 0;
+    const cap2 = parseInt(values['CAP2_R001_C2']) || 0;
+
+    if (cap1 !== cap2) {
+        webform.errors.push({
+            fieldName: 'CAP1_R09_C1',
+            index: 0,
+            weight: 23,
+            msg: concatMessage('06-023', '', Drupal.t(
+                'Cod eroare: 06-023 (Cap.1) rd.09 col.1 (@v1) ≠ Cap.II rd.001 col.2 (@v2)',
+                { '@v1': cap1, '@v2': cap2 }
+            ))
+        });
+        webform.errors.push({
+            fieldName: 'CAP2_R001_C2',
+            index: 0,
+            weight: 23,
+            msg: concatMessage('06-023', '', Drupal.t(
+                'Cod eroare: 06-023 (Cap.1) rd.09 col.1 (@v1) ≠ Cap.II rd.001 col.2 (@v2)',
+                { '@v1': cap1, '@v2': cap2 }
+            ))
+        });
+    }
+}
+
 
 function validate_06_019() {
     const values = Drupal.settings.mywebform.values;
