@@ -253,6 +253,11 @@ function changeSelectCountry(elem) {
     var $row = jQuery(elem).closest('tr');
     var $select = $row.find('select.select-country');
 
+    if (!codIntrodus) {
+        jQuery(elem).removeClass('invalid-country');
+        $select.prop('selectedIndex', 0);
+        return; // Nu continuăm dacă câmpul este gol
+    }
     var gasit = false;
     var duplicat = false;
 
@@ -264,6 +269,8 @@ function changeSelectCountry(elem) {
             return false;
         }
     });
+
+
 
     // verificăm dacă codul introdus există deja în alt rând
     var allInputs = jQuery('input[name^="CAP2_R_CC"]');
@@ -332,6 +339,10 @@ function changeIdCountry(elem) {
     }
 }
 
+
+//Cand sterg codul din CAP2_R_CC si ajung la ultimul caracter pentru al sterge  - imi apare mesajul  (Exista deja  tara - )
+
+
 webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
 
@@ -371,6 +382,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_028(); 
     validate_06_030(); 
     validate_06_033(); 
+    validate_CAP2_country_codes();
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
     });
@@ -378,6 +390,34 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+
+
+function validate_CAP2_country_codes() {
+    const values = Drupal.settings.mywebform.values;
+    const coduri_introduse = values['CAP2_R_CC'] || [];
+
+    // Extrage toate codurile valide din dropdown
+    const coduri_valide = jQuery('select.select-country option')
+        .map(function () { return this.value; })
+        .get()
+        .filter(code => code !== '');
+
+    coduri_introduse.forEach((cod, i) => {
+        // Validăm doar dacă codul este completat și nu e în lista codurilor valide
+        if (cod && !coduri_valide.includes(cod)) {
+            webform.errors.push({
+                fieldName: 'CAP2_R_CC',
+                index: i,
+                weight: 99,
+                msg: concatMessage('CAP2-COD', '', Drupal.t(
+                    'Codul introdus în rândul @row nu este valid: „@cod” nu există în lista de țări',
+                    { '@row': 'CAP.2', '@cod': cod }
+                ))
+            });
+        }
+    });
+}
 
 
 function validate_06_033() {
