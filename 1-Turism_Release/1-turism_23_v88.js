@@ -1622,7 +1622,42 @@ function validate_CAP2_CA_CB_CC() {
     }
 }
 
-//Here is necessary 
+
+
+//-----------------------------------------------------------
+// //Here it is necessary to highlight the cells where there are no COL1 or COL2 values.
+// function validate_06_038() {
+//     const values = Drupal.settings.mywebform.values;
+//     const id = 'CAP.2';
+//     const cod_tara_field = 'CAP2_R_CC';
+//     const field_col1 = 'CAP2_R_C1';
+//     const field_col2 = 'CAP2_R_C2';
+
+//     for (let i = 0; i < values[cod_tara_field].length; i++) {
+//         const cod = values[cod_tara_field][i];
+//         const val1 = parseInt(values[field_col1][i]) || 0;
+//         const val2 = parseInt(values[field_col2][i]) || 0;
+
+//         const some_field_is_filled = val1 || val2;
+
+//         if (cod) {
+//             if (!some_field_is_filled || (val1 + val2 === 0)) {
+//                 webform.errors.push({
+//                     fieldName: cod_tara_field,
+//                     weight: 25,
+//                     index: i,
+//                     msg: concatMessage('06-038', '', Drupal.t('In Rind @row Tara @country lipsesc datele', {
+//                         '@row': id,
+//                         '@country': cod,
+//                     }))
+//                 });
+//             }
+//         }
+//     }
+// }
+
+
+
 function validate_06_038() {
     const values = Drupal.settings.mywebform.values;
     const id = 'CAP.2';
@@ -1639,19 +1674,48 @@ function validate_06_038() {
 
         if (cod) {
             if (!some_field_is_filled || (val1 + val2 === 0)) {
+                const rowLabel = `${id} - ${cod}`;
+
+                // Eroare pe COL1
+                webform.errors.push({
+                    fieldName: field_col1,
+                    index: i,
+                    weight: 25,
+                    msg: concatMessage('06-038', '', Drupal.t(
+                        'În rând @row (Țara: @country) lipsește valoarea în COL1',
+                        { '@row': id, '@country': cod }
+                    ))
+                });
+
+                // Eroare pe COL2
+                webform.errors.push({
+                    fieldName: field_col2,
+                    index: i,
+                    weight: 25,
+                    msg: concatMessage('06-038', '', Drupal.t(
+                        'În rând @row (Țara: @country) lipsește valoarea în COL2',
+                        { '@row': id, '@country': cod }
+                    ))
+                });
+
+                // Eroare pe codul țării (CAP2_R_CC)
                 webform.errors.push({
                     fieldName: cod_tara_field,
-                    weight: 25,
                     index: i,
-                    msg: concatMessage('06-038', '', Drupal.t('In Rind @row Tara @country lipsesc datele', {
-                        '@row': id,
-                        '@country': cod,
-                    }))
+                    weight: 25,
+                    msg: concatMessage('06-038', '', Drupal.t(
+                        'În rând @row (Țara: @country) lipsesc datele obligatorii (COL1 și COL2)',
+                        { '@row': id, '@country': cod }
+                    ))
                 });
             }
         }
     }
 }
+
+
+//------------------------------------------------------------
+
 function concatMessage(errorCode, fieldTitle, msg) {
     var titleParts = [];
     if (errorCode) titleParts.push(getErrorMessage(errorCode));
