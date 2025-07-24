@@ -1,6 +1,14 @@
 (function ($) {
     Drupal.behaviors.turism1_23 = {
         attach: function (context, settings) {
+
+            // ✅ Modifică opțiunea pentru codul 528 din dropdown (Țările de Jos)
+            jQuery('select.select-country option', context).each(function () {
+                if (jQuery(this).val() === '528') {
+                    jQuery(this).text('Țările de Jos (Olanda), 528');
+                }
+            });
+
             jQuery('input.numeric', context).keypress(function (event) {
                 if (isNumberPressed(this, event) === false) {
                     event.preventDefault();
@@ -12,6 +20,8 @@
                     event.preventDefault();
                 }
             });
+
+
 
             jQuery(document).off('input change', 'input.input-country');
             jQuery(document).on('input change', 'input.input-country', function () {
@@ -25,12 +35,61 @@
             watchAutoSum_CAP2_R001_C1();
             watchAutoSum_CAP2_R001_C2();
             watchLiveNegative_CAP2();
+            watchLiveValidation_CAP2_R_CC();
+            toggle_CAP2_R_CC(values);
             
         }
     }
 })(jQuery);
 
 
+function toggle_CAP2_R_CC(values) {
+    const coduri_introduse = values['CAP2_R_CC'] || [];
+
+    // Lista codurilor valide din dropdown
+    const coduri_valide = jQuery('select.select-country option')
+        .map(function () { return this.value; })
+        .get()
+        .filter(c => c !== '');
+
+    coduri_introduse.forEach((cod, i) => {
+        const selector = `#CAP2_R_CC-${i + 1}`;
+        jQuery(selector).removeClass('invalid-country');
+        jQuery(selector).siblings('.country-error-msg').remove();
+
+        if (cod && !coduri_valide.includes(cod)) {
+            jQuery(selector).addClass('invalid-country');
+            const msg = jQuery('<div class="country-error-msg" style="color:red; font-size:12px;">Codul țării nu este valid</div>');
+            jQuery(selector).closest('td').append(msg);
+        }
+    });
+}
+
+
+function watchLiveValidation_CAP2_R_CC() {
+    const validCodes = jQuery('select.select-country option')
+        .map(function () { return this.value; })
+        .get()
+        .filter(v => v !== "");
+
+    jQuery(document).on('input', 'input.input-country', function () {
+        const $input = jQuery(this);
+        const code = $input.val().trim();
+        const $row = $input.closest('tr');
+        const $msg = $row.find('.country-error-msg');
+
+        if ($msg.length) $msg.remove();
+        $input.removeClass('invalid-country');
+
+        if (code === "") return;
+
+        if (!validCodes.includes(code)) {
+            $input.addClass('invalid-country');
+            const msg = jQuery('<div class="country-error-msg" style="color:red; font-size:12px;">Codul țării nu este valid</div>');
+            $input.closest('td').append(msg);
+        }
+    });
+}
 
 //-----------------------------------------------------------------
 
@@ -345,7 +404,7 @@ function changeIdCountry(elem) {
 
 webform.validators.turism1_23 = function (v, allowOverpass) {
     var values = Drupal.settings.mywebform.values;
-
+    validatePhoneNumber(values.PHONE);
     validate_06_038();
     validate_CAP2_CA_CB_CC();
     validate_CAP2_R001_C1();
@@ -391,6 +450,27 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+function validatePhoneNumber(phone) {
+    // Check if the phone number is valid (exactly 9 digits)
+    if (!phone || !/^[0-9]{9}$/.test(phone)) {
+        webform.errors.push({
+            'fieldName': 'PHONE',
+            'weight': 29,
+            'msg': concatMessage('A.09', '', Drupal.t('Introduceți doar un număr de telefon format din 9 cifre'))
+        });
+    }
+
+    // Check if the first digit is 0
+    if (phone && phone[0] !== '0') {
+        webform.errors.push({
+            'fieldName': 'PHONE',
+            'weight': 30,
+            'msg': concatMessage('A.09', '', Drupal.t('Prima cifră a numărului de telefon trebuie să fie 0'))
+        });
+    }
+}
+
 
 function validate_CAP2_C1_C2_requires_CC_CB() {
     const values = Drupal.settings.mywebform.values;
