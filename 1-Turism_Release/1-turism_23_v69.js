@@ -365,6 +365,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_016();  
     validate_06_017();  
     validate_06_018();  
+    validate_06_019();  
 
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
@@ -373,6 +374,32 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     webform.validatorsStatus['turism1_23'] = 1;
     validateWebform();
 };
+
+function validate_06_019() {
+    const values = Drupal.settings.mywebform.values;
+
+    let sumaCol1 = 0;
+    for (let i = 1; i <= 99; i++) {
+        const r = String(i).padStart(2, '0');
+        const val = parseInt(values[`CAP1_R${r}_C1`]) || 0;
+        sumaCol1 += val;
+    }
+
+    const valR16 = parseInt(values['CAP1_R16_C1']) || 0;
+
+    if (sumaCol1 > 0 && valR16 <= 0) {
+        webform.errors.push({
+            fieldName: 'CAP1_R16_C1',
+            index: 0,
+            weight: 19,
+            msg: concatMessage('06-019', '', Drupal.t(
+                'Cod eroare: 06-019 (Cap.1) Dacă suma col.1 > 0 (@sum), atunci rd.16 trebuie să fie > 0 (este @v16)',
+                { '@sum': sumaCol1, '@v16': valR16 }
+            ))
+        });
+    }
+}
+
 
 function validate_06_015() {
     const values = Drupal.settings.mywebform.values;
