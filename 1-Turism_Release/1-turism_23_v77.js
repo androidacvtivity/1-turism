@@ -340,7 +340,7 @@ function changeIdCountry(elem) {
 }
 
 
-//Cand sterg codul din CAP2_R_CC si ajung la ultimul caracter pentru al sterge  - imi apare mesajul  (Exista deja  tara - )
+
 
 
 webform.validators.turism1_23 = function (v, allowOverpass) {
@@ -383,6 +383,7 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validate_06_030(); 
     validate_06_033(); 
     validate_CAP2_country_codes();
+    validate_CAP2_C1_C2_requires_CC_CB()
     webform.warnings.sort(function (a, b) {
         return sort_errors_warinings(a, b);
     });
@@ -391,7 +392,49 @@ webform.validators.turism1_23 = function (v, allowOverpass) {
     validateWebform();
 };
 
+function validate_CAP2_C1_C2_requires_CC_CB() {
+    const values = Drupal.settings.mywebform.values;
+    const field_C1 = 'CAP2_R_C1';
+    const field_C2 = 'CAP2_R_C2';
+    const field_CC = 'CAP2_R_CC';
+    const field_CB = 'CAP2_R_CB';
+    const id = 'CAP.2';
 
+    for (let i = 0; i < values[field_C1].length; i++) {
+        const val_C1 = parseInt(values[field_C1][i]) || 0;
+        const val_C2 = parseInt(values[field_C2][i]) || 0;
+        const val_CC = values[field_CC][i];
+        const val_CB = values[field_CB][i];
+
+        const isCCempty = !val_CC || val_CC.trim() === '';
+        const isCBempty = !val_CB || val_CB.trim() === '';
+
+        if ((val_C1 !== 0 || val_C2 !== 0) && (isCCempty || isCBempty)) {
+            const msg = concatMessage('CAP2-MISS', '', Drupal.t(
+                'În rândul @row: Ați introdus date în col.1 sau col.2, dar nu ați completat codul țării (col.c) și/sau selecția țării (col.b)',
+                { '@row': id }
+            ));
+
+            if (isCCempty) {
+                webform.errors.push({
+                    fieldName: field_CC,
+                    index: i,
+                    weight: 40,
+                    msg: msg
+                });
+            }
+
+            if (isCBempty) {
+                webform.errors.push({
+                    fieldName: field_CB,
+                    index: i,
+                    weight: 40,
+                    msg: msg
+                });
+            }
+        }
+    }
+}
 
 function validate_CAP2_country_codes() {
     const values = Drupal.settings.mywebform.values;
