@@ -36,7 +36,7 @@
             watchAutoSum_CAP2_R001_C2();
             watchLiveNegative_CAP2();
             watchLiveValidation_CAP2_R_CC();
-         //   toggle_CAP2_R_CC(values);
+            toggle_CAP2_R_CC(values);
             
         }
     }
@@ -54,12 +54,18 @@ function toggle_CAP2_R_CC(values) {
 
     coduri_introduse.forEach((cod, i) => {
         const selector = `#CAP2_R_CC-${i + 1}`;
+
+        // Curățăm orice mesaje/eroare anterioare
         jQuery(selector).removeClass('invalid-country');
         jQuery(selector).siblings('.country-error-msg').remove();
 
+        // Validăm doar dacă există cod introdus
         if (cod && !coduri_valide.includes(cod)) {
+            // Cod invalid
             jQuery(selector).addClass('invalid-country');
-            const msg = jQuery('<div class="country-error-msg" style="color:red; font-size:12px;">Codul țării nu este valid</div>');
+            const msg = jQuery(
+                '<div class="country-error-msg" style="color:red; font-size:12px;">Codul țării nu este valid</div>'
+            );
             jQuery(selector).closest('td').append(msg);
         }
     });
