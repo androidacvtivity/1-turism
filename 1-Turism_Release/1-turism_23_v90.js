@@ -36,13 +36,13 @@
             watchAutoSum_CAP2_R001_C2();
             watchLiveNegative_CAP2();
             watchLiveValidation_CAP2_R_CC();
-            toggle_CAP2_R_CC(values);
+         //   toggle_CAP2_R_CC(values);
             
         }
     }
 })(jQuery);
 
-
+//Aceasta validarea cand raportul se reincarca la previzualizare  - lucreaza - dar codurile sunt corect 
 function toggle_CAP2_R_CC(values) {
     const coduri_introduse = values['CAP2_R_CC'] || [];
 
