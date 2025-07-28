@@ -36,40 +36,12 @@
             watchAutoSum_CAP2_R001_C2();
             watchLiveNegative_CAP2();
             watchLiveValidation_CAP2_R_CC();
-            // toggle_CAP2_R_CC(values);
-            setTimeout(() => {
-                toggle_CAP2_R_CC(values);
-            }, 300); // 300ms delay
+          
             
         }
     }
 })(jQuery);
 
-function toggle_CAP2_R_CC(values) {
-    // luăm codurile valide doar după ce dropdown-ul este complet
-    const coduri_valide = jQuery('select.select-country option')
-        .map(function () { return this.value; })
-        .get()
-        .filter(c => c !== '');
-
-    const coduri_introduse = values['CAP2_R_CC'] || [];
-
-    coduri_introduse.forEach((cod, i) => {
-        const selector = `#CAP2_R_CC-${i + 1}`;
-        const $field = jQuery(selector);
-
-        // curățăm mereu mesajele și clasa
-        $field.removeClass('invalid-country');
-        $field.siblings('.country-error-msg').remove();
-
-        // validăm doar dacă codul NU e găsit în dropdown
-        if (cod && !coduri_valide.includes(cod)) {
-            $field.addClass('invalid-country');
-            const msg = jQuery('<div class="country-error-msg" style="color:red; font-size:12px;">Codul țării nu este valid</div>');
-            $field.closest('td').append(msg);
-        }
-    });
-}
 
 function watchLiveValidation_CAP2_R_CC() {
     const validCodes = jQuery('select.select-country option')
